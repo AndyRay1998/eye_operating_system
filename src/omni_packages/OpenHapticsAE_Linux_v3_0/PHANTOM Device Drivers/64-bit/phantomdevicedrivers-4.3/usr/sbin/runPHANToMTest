@@ -1,0 +1,6 @@
+#!/bin/csh -f
+
+#Shell script to solve the language problem with PDD. The configuration files written for devices are ascii delimited files with periods and commas which have different meaning in a language other than english. For e.g. in German. a period means a comma and a comma means a decimal place. : VENKAT: Aug 24 2009
+
+setenv LANG en_US
+/usr/sbin/PHANToMTest

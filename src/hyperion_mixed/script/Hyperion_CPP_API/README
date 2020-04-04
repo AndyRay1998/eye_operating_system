@@ -1,0 +1,23 @@
+This is the source distribution of the c++ API for Micron Optics Hyperion Instruments
+
+Source files:
+
+hCommLibrary.h  -- Header file defining the low level communications interface to the instrument.
+hCommLibrary.cpp -- Impementation of the low level communications interface.
+
+hLibrary.h -- Header file defining the functional API to the instrument.
+hLibrary.cpp -- Implementation of the low level communications interface.
+
+hLibTest.cpp -- An example file that tests all the functionality of the API in a console application
+on mac OS X or Linux.
+hLibTestWin32.cpp -- An example file that tests all of the functionality of the API in a console application
+in a windows 32 bit application. (Tested with MS Visual Studio Express 2013)
+
+Documentation:
+
+HTML documentation can be found in the following directories:
+
+./hCommLibrary_h -- Documentation for the low level communications interface.
+./hLibrary_h -- Documentation for the functional API.
+
+Documentation is also embedded in the comments in the header files.

@@ -1,0 +1,1 @@
+cmd_/home/andy/catkin_ws/src/omni_common/dummyraw1394/raw1394.ko := ld -r -m elf_x86_64 -z max-page-size=0x200000 -T ./scripts/module-common.lds --build-id  -o /home/andy/catkin_ws/src/omni_common/dummyraw1394/raw1394.ko /home/andy/catkin_ws/src/omni_common/dummyraw1394/raw1394.o /home/andy/catkin_ws/src/omni_common/dummyraw1394/raw1394.mod.o ;  true

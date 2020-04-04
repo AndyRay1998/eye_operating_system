@@ -1,0 +1,23 @@
+<launch>
+
+  <arg name="file_suffix" default="" />
+  <arg name="hyperion_address" default="10.0.10.71" />
+  <arg name="yamaha_address" default="" />
+  <arg name="yamaha_freq" default="9600" />
+  <arg name="yamaha_timeout" default="0.5" />
+
+  <node name="Hyperion_talker" pkg="hyperion_mixed" type="hyperion_talker$(arg file_suffix)" output="screen" >
+    <param name="Hyperion_address" type="string" value="$(arg hyperion_address)" />
+  </node>
+
+  <node name="Omni_talker" pkg="omni_common" type="omni_talker.py" output="screen" />
+
+  <node name="Galil_overall_listener" pkg="galil_mixed" type="galil_overall_listener$(arg file_suffix)" output="screen" />
+
+  <node name="Yamaha_listener" pkg="yamaha_mixed" type="yamaha_listener$(arg file_suffix)" output="screen" >
+    <param name="Yamaha_address" type="string" value="$(arg yamaha_address)" />
+    <param name="Yamaha_freq" type="int" value="$(arg yamaha_freq)" />
+    <param name="Yamaha_timeout" type="double" value="$(arg yamaha_timeout)" />
+  </node>
+
+</launch>

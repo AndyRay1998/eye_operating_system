@@ -1,0 +1,8 @@
+prefix=/home/andy/eye_op_robot_mixed/devel
+
+Name: omni_msgs
+Description: Description of omni_msgs
+Version: 0.1.0
+Cflags: -I/home/andy/eye_op_robot_mixed/devel/include
+Libs: -L/home/andy/eye_op_robot_mixed/devel/lib 
+Requires: message_runtime geometry_msgs sensor_msgs std_msgs

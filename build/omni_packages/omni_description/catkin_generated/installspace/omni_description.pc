@@ -1,0 +1,8 @@
+prefix=/home/andy/eye_op_robot_mixed/install
+
+Name: omni_description
+Description: Description of omni_description
+Version: 0.1.0
+Cflags: 
+Libs: -L/home/andy/eye_op_robot_mixed/install/lib 
+Requires: 

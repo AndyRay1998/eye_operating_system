@@ -1,0 +1,8 @@
+prefix=/home/andy/eye_op_robot_mixed/devel
+
+Name: hyperion_mixed
+Description: Description of hyperion_mixed
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/andy/eye_op_robot_mixed/devel/lib 
+Requires: 
