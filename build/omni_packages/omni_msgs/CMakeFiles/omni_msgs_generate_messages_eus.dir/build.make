@@ -72,11 +72,11 @@ omni_packages/omni_msgs/CMakeFiles/omni_msgs_generate_messages_eus: /home/andy/e
 
 /home/andy/eye_op_robot_mixed/devel/share/roseus/ros/omni_msgs/msg/OmniState.l: /opt/ros/kinetic/lib/geneus/gen_eus.py
 /home/andy/eye_op_robot_mixed/devel/share/roseus/ros/omni_msgs/msg/OmniState.l: /home/andy/eye_op_robot_mixed/src/omni_packages/omni_msgs/msg/OmniState.msg
-/home/andy/eye_op_robot_mixed/devel/share/roseus/ros/omni_msgs/msg/OmniState.l: /opt/ros/kinetic/share/geometry_msgs/msg/Point.msg
 /home/andy/eye_op_robot_mixed/devel/share/roseus/ros/omni_msgs/msg/OmniState.l: /opt/ros/kinetic/share/geometry_msgs/msg/Vector3.msg
+/home/andy/eye_op_robot_mixed/devel/share/roseus/ros/omni_msgs/msg/OmniState.l: /opt/ros/kinetic/share/std_msgs/msg/Header.msg
 /home/andy/eye_op_robot_mixed/devel/share/roseus/ros/omni_msgs/msg/OmniState.l: /opt/ros/kinetic/share/geometry_msgs/msg/Pose.msg
 /home/andy/eye_op_robot_mixed/devel/share/roseus/ros/omni_msgs/msg/OmniState.l: /opt/ros/kinetic/share/geometry_msgs/msg/Quaternion.msg
-/home/andy/eye_op_robot_mixed/devel/share/roseus/ros/omni_msgs/msg/OmniState.l: /opt/ros/kinetic/share/std_msgs/msg/Header.msg
+/home/andy/eye_op_robot_mixed/devel/share/roseus/ros/omni_msgs/msg/OmniState.l: /opt/ros/kinetic/share/geometry_msgs/msg/Point.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/andy/eye_op_robot_mixed/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating EusLisp code from omni_msgs/OmniState.msg"
 	cd /home/andy/eye_op_robot_mixed/build/omni_packages/omni_msgs && ../../catkin_generated/env_cached.sh /home/andy/anaconda3/bin/python /opt/ros/kinetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/andy/eye_op_robot_mixed/src/omni_packages/omni_msgs/msg/OmniState.msg -Iomni_msgs:/home/andy/eye_op_robot_mixed/src/omni_packages/omni_msgs/msg -Igeometry_msgs:/opt/ros/kinetic/share/geometry_msgs/cmake/../msg -Isensor_msgs:/opt/ros/kinetic/share/sensor_msgs/cmake/../msg -Istd_msgs:/opt/ros/kinetic/share/std_msgs/cmake/../msg -p omni_msgs -o /home/andy/eye_op_robot_mixed/devel/share/roseus/ros/omni_msgs/msg
 

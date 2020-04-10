@@ -6,7 +6,10 @@ from std_msgs.msg import Float32MultiArray
 from std_msgs.msg import MultiArrayDimension
 import sys
 
-import hyperion
+# add API located in another folder
+sys.path.append(sys.path[0] + '/../src')
+
+import Hyperion_PY_API.hyperion
 import Hyperion_PY_API.networkconfiguration
 import Hyperion_PY_API.getspectrumandpeaksplot
 

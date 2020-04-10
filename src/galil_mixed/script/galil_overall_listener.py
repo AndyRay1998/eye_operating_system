@@ -4,6 +4,9 @@
 import rospy
 from std_msgs.msg import Float32MultiArray
 
+import sys
+sys.path.append(sys.path[0] + '/../src')
+
 import gclib_python.example # galil api
 
 

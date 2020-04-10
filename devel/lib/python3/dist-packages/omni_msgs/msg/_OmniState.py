@@ -5,8 +5,8 @@ python3 = True if sys.hexversion > 0x03000000 else False
 import genpy
 import struct
 
-import std_msgs.msg
 import geometry_msgs.msg
+import std_msgs.msg
 
 class OmniState(genpy.Message):
   _md5sum = "89c2a741de66e9e904f59a02b171dd6e"
@@ -243,15 +243,15 @@ _struct_I = genpy.struct_I
 def _get_struct_I():
     global _struct_I
     return _struct_I
-_struct_3I = None
-def _get_struct_3I():
-    global _struct_3I
-    if _struct_3I is None:
-        _struct_3I = struct.Struct("<3I")
-    return _struct_3I
 _struct_2B13d = None
 def _get_struct_2B13d():
     global _struct_2B13d
     if _struct_2B13d is None:
         _struct_2B13d = struct.Struct("<2B13d")
     return _struct_2B13d
+_struct_3I = None
+def _get_struct_3I():
+    global _struct_3I
+    if _struct_3I is None:
+        _struct_3I = struct.Struct("<3I")
+    return _struct_3I

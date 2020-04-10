@@ -1,7 +1,7 @@
 #include "ros/ros.h"
 #include "std_msgs/Float32MultiArray.h"
-#include "Hyperion_CPP_API/hLibrary.h"
-#include "hyperion_get_peaks.h"
+#include "../src/Hyperion_CPP_API/hLibrary.h"
+#include "../src/hyperion_get_peaks.h"
 
 #include <sstream>
 #include <iostream>

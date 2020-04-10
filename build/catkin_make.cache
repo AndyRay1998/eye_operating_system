@@ -1,2 +1,2 @@
-ey_op_common:galil_mixed:hyperion_mixed:omni_packages/omni_common:omni_packages/omni_description:omni_packages/omni_msgs:omni_packages/ros_robotics:yamaha_mixed
+eye_op_common:galil_mixed:hyperion_mixed:omni_packages/omni_common:omni_packages/omni_description:omni_packages/omni_msgs:omni_packages/ros_robotics:yamaha_mixed
 -DCATKIN_DEVEL_PREFIX=/home/andy/eye_op_robot_mixed/devel -DCMAKE_INSTALL_PREFIX=/home/andy/eye_op_robot_mixed/install -G Unix Makefiles

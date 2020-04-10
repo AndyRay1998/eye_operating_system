@@ -6,7 +6,7 @@
 # testing this directory and lists subdirectories to be tested as well.
 subdirs(gtest)
 subdirs(omni_packages/ros_robotics)
-subdirs(ey_op_common)
+subdirs(eye_op_common)
 subdirs(galil_mixed)
 subdirs(hyperion_mixed)
 subdirs(omni_packages/omni_msgs)

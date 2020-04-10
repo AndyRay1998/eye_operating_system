@@ -278,10 +278,10 @@ catkin_DIR:PATH=/opt/ros/kinetic/share/catkin/cmake
 cpp_common_DIR:PATH=/opt/ros/kinetic/share/cpp_common/cmake
 
 //Value Computed by CMake
-ey_op_common_BINARY_DIR:STATIC=/home/andy/eye_op_robot_mixed/build/ey_op_common
+eye_op_common_BINARY_DIR:STATIC=/home/andy/eye_op_robot_mixed/build/eye_op_common
 
 //Value Computed by CMake
-ey_op_common_SOURCE_DIR:STATIC=/home/andy/eye_op_robot_mixed/src/ey_op_common
+eye_op_common_SOURCE_DIR:STATIC=/home/andy/eye_op_robot_mixed/src/eye_op_common
 
 //Value Computed by CMake
 galil_mixed_BINARY_DIR:STATIC=/home/andy/eye_op_robot_mixed/build/galil_mixed
@@ -349,9 +349,6 @@ gtest_force_shared_crt:BOOL=OFF
 
 //Dependencies for the target
 gtest_main_LIB_DEPENDS:STATIC=general;-lpthread;general;gtest;
-
-//Dependencies for target
-hyperion_get_peaks_LIB_DEPENDS:STATIC=
 
 //Value Computed by CMake
 hyperion_mixed_BINARY_DIR:STATIC=/home/andy/eye_op_robot_mixed/build/hyperion_mixed

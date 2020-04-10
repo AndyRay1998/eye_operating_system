@@ -127,7 +127,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/home/andy/eye_op_robot_mixed/build/gtest/cmake_install.cmake")
   include("/home/andy/eye_op_robot_mixed/build/omni_packages/ros_robotics/cmake_install.cmake")
-  include("/home/andy/eye_op_robot_mixed/build/ey_op_common/cmake_install.cmake")
+  include("/home/andy/eye_op_robot_mixed/build/eye_op_common/cmake_install.cmake")
   include("/home/andy/eye_op_robot_mixed/build/galil_mixed/cmake_install.cmake")
   include("/home/andy/eye_op_robot_mixed/build/hyperion_mixed/cmake_install.cmake")
   include("/home/andy/eye_op_robot_mixed/build/omni_packages/omni_msgs/cmake_install.cmake")

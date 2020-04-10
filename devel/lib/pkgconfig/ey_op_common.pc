@@ -1,8 +1,0 @@
-prefix=/home/andy/eye_op_robot_mixed/devel
-
-Name: ey_op_common
-Description: Description of ey_op_common
-Version: 0.0.0
-Cflags: 
-Libs: -L/home/andy/eye_op_robot_mixed/devel/lib 
-Requires: 

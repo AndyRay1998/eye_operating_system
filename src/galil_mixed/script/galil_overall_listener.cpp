@@ -1,6 +1,6 @@
 #include "ros/ros.h"
 #include "std_msgs/Float32MultiArray.h"
-#include "gclib_cpp/x_examples.h"
+#include "../src/gclib_cpp/x_examples.h"
 
 
 void chatterCallback1(const std_msgs::Float32MultiArray::ConstPtr& msg1)

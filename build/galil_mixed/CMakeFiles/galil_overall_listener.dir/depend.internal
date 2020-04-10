@@ -3,7 +3,7 @@
 
 galil_mixed/CMakeFiles/galil_overall_listener.dir/script/galil_overall_listener.cpp.o
  /home/andy/eye_op_robot_mixed/src/galil_mixed/script/galil_overall_listener.cpp
- /home/andy/eye_op_robot_mixed/src/galil_mixed/script/gclib_cpp/x_examples.h
+ /home/andy/eye_op_robot_mixed/src/galil_mixed/src/gclib_cpp/x_examples.h
  /opt/ros/kinetic/include/ros/advertise_options.h
  /opt/ros/kinetic/include/ros/advertise_service_options.h
  /opt/ros/kinetic/include/ros/assert.h
