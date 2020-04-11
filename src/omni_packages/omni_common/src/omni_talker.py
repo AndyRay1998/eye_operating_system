@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# note: Hyperion is programmed under python3
+# note: omni is programmed under python3
 import rospy
 import numpy as np
 from std_msgs.msg import Float32MultiArray

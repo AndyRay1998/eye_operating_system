@@ -44,6 +44,7 @@ def hyperion_connect_config(current_address = '10.0.10.71',
         print(f"\033[1;31;45m Connected with new network settings: {h1.active_network_settings}\033[0m")
 
     except:
+        # Error handler
         print("\033[1;32;42m[WARN] Hyperion connection failed!\033[0m")
 
         sys.exit()

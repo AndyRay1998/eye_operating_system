@@ -1,6 +1,11 @@
 # Construction and Implementation of Software Control Platform for Ophthalmic Operation Robot Based on ROS  
 This project tries to develop a flexible and modular platform for researches into ophthalmic operation robot based on ROS.  
 At present, it only provides a good software frame but not wholistic and systematic functions from input to output.  
+Four devices are used:
+* Galil Motion Control Card http://www.galil.com/  
+* YAMAHA SCARA
+* Hyperion Device http://www.micronoptics.com/product/hyperion-single-board-interrogator/#tab-manuals  
+* Omni Phantom https://www.3dsystems.com/haptics-devices/touch  
   
 ## Getting Started
 The following content will help you deploy this project to your PC smoothly.  
@@ -37,15 +42,15 @@ $ roslaunch eye_op_common eye_op_robot.launch
 ```Bash  
 $ ./env.sh  
 ```  
-* 4.1 If any errors happen, see inside `omni_pacakges/README.md` for manual installation guidance.  
-* OpenHaptic SDK is in `omni_packages/OpenHapticsAE_Linux_v3_0` or can be downloaded here https://github.com/fsuarez6/phantom_omni/releases .  
+* 4.1 If any errors happen, see inside `omni_pacakges/README.md` for manual installation guidance  
+* OpenHaptic SDK is in `omni_packages/OpenHapticsAE_Linux_v3_0` or can be downloaded here https://github.com/fsuarez6/phantom_omni/releases  
 
-5. Hyperion API is in `hyperion_mixed/src`, which you do not need to install manually.  
+5. Hyperion API is in `hyperion_mixed/src`, which you do not need to install manually  
 6. Test Omni API  
 ```Bash  
 $ roslaunch omni_common omni.launch  
 ```  
-7. After that, you still need to see http://fsuarez6.github.io/projects/geomagic-touch-in-ros/ for more information.  
+7. After that, you still need to see http://fsuarez6.github.io/projects/geomagic-touch-in-ros/ for more information  
   
 ## Scripting Languages  
 This workspace include both .cpp and .py executable files for flexibility and robustness.  

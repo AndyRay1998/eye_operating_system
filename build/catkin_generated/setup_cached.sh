@@ -7,8 +7,6 @@
 # new environment variables
 
 # modified environment variables
-export LD_LIBRARY_PATH="/home/andy/ros_workplace1/devel/lib:/opt/ros/kinetic/lib:/opt/ros/kinetic/lib/x86_64-linux-gnu"
-export PKG_CONFIG_PATH="/home/andy/ros_workplace1/devel/lib/pkgconfig:/opt/ros/kinetic/lib/pkgconfig:/opt/ros/kinetic/lib/x86_64-linux-gnu/pkgconfig"
 export PWD="/home/andy/eye_op_robot_mixed/build"
-export PYTHONPATH="/home/andy/ros_workplace1/devel/lib/python3/dist-packages:/opt/ros/kinetic/lib/python2.7/dist-packages:/home/andy/catkin_ws/devel/lib/python3/dist-packages:/home/andy/catkin_ws:/home/andy/ros_workplace1:/home/andy/gym"
+export PYTHONPATH="/home/andy/eye_op_robot_mixed/devel/lib/python3/dist-packages:/home/andy/ros_workplace1/devel/lib/python3/dist-packages:/opt/ros/kinetic/lib/python2.7/dist-packages:/home/andy/catkin_ws/devel/lib/python3/dist-packages:/home/andy/catkin_ws:/home/andy/ros_workplace1:/home/andy/gym"
 export ROS_PACKAGE_PATH="/home/andy/eye_op_robot_mixed/src:/home/andy/ros_workplace1/src:/opt/ros/kinetic/share"

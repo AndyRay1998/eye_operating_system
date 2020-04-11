@@ -3,5 +3,13 @@
         <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
         <node name="omni" pkg="omni_common" type="omni" output="screen" />
         <node name="rviz" pkg="rviz" type="rviz" args="-d $(find omni_common)/launch/omni.rviz" required="true" />
+	
+
+	<node pkg="tf" type="static_transform_publisher" name="lowerarm_to_base" args="0 0 0.1 1.5707 0 0 base lower_arm  100"/>
+	<node pkg="tf" type="static_transform_publisher" name="torso_to_base" args="0 0 0.075 -1.5707 0 0 base torso  100"/>
+	<node pkg="tf" type="static_transform_publisher" name="upperarm_to_base" args="0.0075 0 0.1 0 0 0 base upper_arm  100"/>
+	<node pkg="tf" type="static_transform_publisher" name="wrist_to_base" args="0 0 0 3.14159 0 0 base wrist  100"/>
+	<node pkg="tf" type="static_transform_publisher" name="tip_to_base" args="0 0 0 -1.5707 0 0 base tip  100"/>
+	<node pkg="tf" type="static_transform_publisher" name="stylus_to_base" args="0 -0.033 0 1.5707 1.5707 0 base stylus  100"/>
 </launch>
 

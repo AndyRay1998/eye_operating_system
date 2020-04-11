@@ -13,6 +13,7 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   std_msgs
+  omni_msgs
 )
 
 ## System dependencies are found with CMake's conventions
@@ -206,3 +207,8 @@ include_directories(
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
+
+# This is for C++ to call python function
+link_directories(/usr/lib/python3.5/config-3.5m-x86_64-linux-gnu)
+add_executable(test_listener script/test_listener.cpp)
+target_link_libraries(test_listener ${catkin_LIBRARIES} python3.5)

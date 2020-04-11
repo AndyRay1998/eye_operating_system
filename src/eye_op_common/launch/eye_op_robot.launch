@@ -20,4 +20,8 @@
     <param name="Yamaha_timeout" type="double" value="$(arg yamaha_timeout)" />
   </node>
 
+  <node name="common_listener" pkg="eye_op_common" type="common_listener.py" output="screen" />
+
+  <!-- node name="test_listener" pkg="eye_op_common" type="test_listener" output="screen" /-->
+
 </launch>

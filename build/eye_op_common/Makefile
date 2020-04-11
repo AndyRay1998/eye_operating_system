@@ -56,6 +56,16 @@ CMAKE_BINARY_DIR = /home/andy/eye_op_robot_mixed/build
 #=============================================================================
 # Targets provided globally by CMake.
 
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+
+.PHONY : list_install_components/fast
+
 # Special rule for the target install
 install: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
@@ -67,49 +77,6 @@ install/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
 	/usr/bin/cmake -P cmake_install.cmake
 .PHONY : install/fast
-
-# Special rule for the target install/local
-install/local: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local
-
-# Special rule for the target install/local
-install/local/fast: install/local
-
-.PHONY : install/local/fast
-
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
-
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-
-.PHONY : list_install_components/fast
-
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
-
-# Special rule for the target install/strip
-install/strip/fast: install/strip
-
-.PHONY : install/strip/fast
-
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
-
-# Special rule for the target test
-test/fast: test
-
-.PHONY : test/fast
 
 # Special rule for the target rebuild_cache
 rebuild_cache:
@@ -132,6 +99,39 @@ edit_cache:
 edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
+
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
+
+# Special rule for the target install/local
+install/local/fast: install/local
+
+.PHONY : install/local/fast
+
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: install/strip
+
+.PHONY : install/strip/fast
+
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+
+.PHONY : test/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -166,229 +166,46 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-eye_op_common/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule:
-	cd /home/andy/eye_op_robot_mixed/build && $(MAKE) -f CMakeFiles/Makefile2 eye_op_common/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
-.PHONY : eye_op_common/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
+eye_op_common/CMakeFiles/test_listener.dir/rule:
+	cd /home/andy/eye_op_robot_mixed/build && $(MAKE) -f CMakeFiles/Makefile2 eye_op_common/CMakeFiles/test_listener.dir/rule
+.PHONY : eye_op_common/CMakeFiles/test_listener.dir/rule
 
 # Convenience name for target.
-std_msgs_generate_messages_lisp: eye_op_common/CMakeFiles/std_msgs_generate_messages_lisp.dir/rule
+test_listener: eye_op_common/CMakeFiles/test_listener.dir/rule
 
-.PHONY : std_msgs_generate_messages_lisp
+.PHONY : test_listener
 
 # fast build rule for target.
-std_msgs_generate_messages_lisp/fast:
-	cd /home/andy/eye_op_robot_mixed/build && $(MAKE) -f eye_op_common/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make eye_op_common/CMakeFiles/std_msgs_generate_messages_lisp.dir/build
-.PHONY : std_msgs_generate_messages_lisp/fast
+test_listener/fast:
+	cd /home/andy/eye_op_robot_mixed/build && $(MAKE) -f eye_op_common/CMakeFiles/test_listener.dir/build.make eye_op_common/CMakeFiles/test_listener.dir/build
+.PHONY : test_listener/fast
 
-# Convenience name for target.
-eye_op_common/CMakeFiles/std_msgs_generate_messages_eus.dir/rule:
-	cd /home/andy/eye_op_robot_mixed/build && $(MAKE) -f CMakeFiles/Makefile2 eye_op_common/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
-.PHONY : eye_op_common/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
+script/test_listener.o: script/test_listener.cpp.o
 
-# Convenience name for target.
-std_msgs_generate_messages_eus: eye_op_common/CMakeFiles/std_msgs_generate_messages_eus.dir/rule
+.PHONY : script/test_listener.o
 
-.PHONY : std_msgs_generate_messages_eus
+# target to build an object file
+script/test_listener.cpp.o:
+	cd /home/andy/eye_op_robot_mixed/build && $(MAKE) -f eye_op_common/CMakeFiles/test_listener.dir/build.make eye_op_common/CMakeFiles/test_listener.dir/script/test_listener.cpp.o
+.PHONY : script/test_listener.cpp.o
 
-# fast build rule for target.
-std_msgs_generate_messages_eus/fast:
-	cd /home/andy/eye_op_robot_mixed/build && $(MAKE) -f eye_op_common/CMakeFiles/std_msgs_generate_messages_eus.dir/build.make eye_op_common/CMakeFiles/std_msgs_generate_messages_eus.dir/build
-.PHONY : std_msgs_generate_messages_eus/fast
+script/test_listener.i: script/test_listener.cpp.i
 
-# Convenience name for target.
-eye_op_common/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/andy/eye_op_robot_mixed/build && $(MAKE) -f CMakeFiles/Makefile2 eye_op_common/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
-.PHONY : eye_op_common/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
+.PHONY : script/test_listener.i
 
-# Convenience name for target.
-std_msgs_generate_messages_nodejs: eye_op_common/CMakeFiles/std_msgs_generate_messages_nodejs.dir/rule
+# target to preprocess a source file
+script/test_listener.cpp.i:
+	cd /home/andy/eye_op_robot_mixed/build && $(MAKE) -f eye_op_common/CMakeFiles/test_listener.dir/build.make eye_op_common/CMakeFiles/test_listener.dir/script/test_listener.cpp.i
+.PHONY : script/test_listener.cpp.i
 
-.PHONY : std_msgs_generate_messages_nodejs
+script/test_listener.s: script/test_listener.cpp.s
 
-# fast build rule for target.
-std_msgs_generate_messages_nodejs/fast:
-	cd /home/andy/eye_op_robot_mixed/build && $(MAKE) -f eye_op_common/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build.make eye_op_common/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build
-.PHONY : std_msgs_generate_messages_nodejs/fast
+.PHONY : script/test_listener.s
 
-# Convenience name for target.
-eye_op_common/CMakeFiles/roscpp_generate_messages_lisp.dir/rule:
-	cd /home/andy/eye_op_robot_mixed/build && $(MAKE) -f CMakeFiles/Makefile2 eye_op_common/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
-.PHONY : eye_op_common/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_lisp: eye_op_common/CMakeFiles/roscpp_generate_messages_lisp.dir/rule
-
-.PHONY : roscpp_generate_messages_lisp
-
-# fast build rule for target.
-roscpp_generate_messages_lisp/fast:
-	cd /home/andy/eye_op_robot_mixed/build && $(MAKE) -f eye_op_common/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make eye_op_common/CMakeFiles/roscpp_generate_messages_lisp.dir/build
-.PHONY : roscpp_generate_messages_lisp/fast
-
-# Convenience name for target.
-eye_op_common/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule:
-	cd /home/andy/eye_op_robot_mixed/build && $(MAKE) -f CMakeFiles/Makefile2 eye_op_common/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
-.PHONY : eye_op_common/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_nodejs: eye_op_common/CMakeFiles/roscpp_generate_messages_nodejs.dir/rule
-
-.PHONY : roscpp_generate_messages_nodejs
-
-# fast build rule for target.
-roscpp_generate_messages_nodejs/fast:
-	cd /home/andy/eye_op_robot_mixed/build && $(MAKE) -f eye_op_common/CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make eye_op_common/CMakeFiles/roscpp_generate_messages_nodejs.dir/build
-.PHONY : roscpp_generate_messages_nodejs/fast
-
-# Convenience name for target.
-eye_op_common/CMakeFiles/roscpp_generate_messages_eus.dir/rule:
-	cd /home/andy/eye_op_robot_mixed/build && $(MAKE) -f CMakeFiles/Makefile2 eye_op_common/CMakeFiles/roscpp_generate_messages_eus.dir/rule
-.PHONY : eye_op_common/CMakeFiles/roscpp_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_eus: eye_op_common/CMakeFiles/roscpp_generate_messages_eus.dir/rule
-
-.PHONY : roscpp_generate_messages_eus
-
-# fast build rule for target.
-roscpp_generate_messages_eus/fast:
-	cd /home/andy/eye_op_robot_mixed/build && $(MAKE) -f eye_op_common/CMakeFiles/roscpp_generate_messages_eus.dir/build.make eye_op_common/CMakeFiles/roscpp_generate_messages_eus.dir/build
-.PHONY : roscpp_generate_messages_eus/fast
-
-# Convenience name for target.
-eye_op_common/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule:
-	cd /home/andy/eye_op_robot_mixed/build && $(MAKE) -f CMakeFiles/Makefile2 eye_op_common/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
-.PHONY : eye_op_common/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-std_msgs_generate_messages_cpp: eye_op_common/CMakeFiles/std_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : std_msgs_generate_messages_cpp
-
-# fast build rule for target.
-std_msgs_generate_messages_cpp/fast:
-	cd /home/andy/eye_op_robot_mixed/build && $(MAKE) -f eye_op_common/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make eye_op_common/CMakeFiles/std_msgs_generate_messages_cpp.dir/build
-.PHONY : std_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
-eye_op_common/CMakeFiles/roscpp_generate_messages_cpp.dir/rule:
-	cd /home/andy/eye_op_robot_mixed/build && $(MAKE) -f CMakeFiles/Makefile2 eye_op_common/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
-.PHONY : eye_op_common/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_cpp: eye_op_common/CMakeFiles/roscpp_generate_messages_cpp.dir/rule
-
-.PHONY : roscpp_generate_messages_cpp
-
-# fast build rule for target.
-roscpp_generate_messages_cpp/fast:
-	cd /home/andy/eye_op_robot_mixed/build && $(MAKE) -f eye_op_common/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make eye_op_common/CMakeFiles/roscpp_generate_messages_cpp.dir/build
-.PHONY : roscpp_generate_messages_cpp/fast
-
-# Convenience name for target.
-eye_op_common/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/andy/eye_op_robot_mixed/build && $(MAKE) -f CMakeFiles/Makefile2 eye_op_common/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
-.PHONY : eye_op_common/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_nodejs: eye_op_common/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_nodejs/fast:
-	cd /home/andy/eye_op_robot_mixed/build && $(MAKE) -f eye_op_common/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make eye_op_common/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build
-.PHONY : rosgraph_msgs_generate_messages_nodejs/fast
-
-# Convenience name for target.
-eye_op_common/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule:
-	cd /home/andy/eye_op_robot_mixed/build && $(MAKE) -f CMakeFiles/Makefile2 eye_op_common/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
-.PHONY : eye_op_common/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_eus: eye_op_common/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_eus
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_eus/fast:
-	cd /home/andy/eye_op_robot_mixed/build && $(MAKE) -f eye_op_common/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make eye_op_common/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build
-.PHONY : rosgraph_msgs_generate_messages_eus/fast
-
-# Convenience name for target.
-eye_op_common/CMakeFiles/roscpp_generate_messages_py.dir/rule:
-	cd /home/andy/eye_op_robot_mixed/build && $(MAKE) -f CMakeFiles/Makefile2 eye_op_common/CMakeFiles/roscpp_generate_messages_py.dir/rule
-.PHONY : eye_op_common/CMakeFiles/roscpp_generate_messages_py.dir/rule
-
-# Convenience name for target.
-roscpp_generate_messages_py: eye_op_common/CMakeFiles/roscpp_generate_messages_py.dir/rule
-
-.PHONY : roscpp_generate_messages_py
-
-# fast build rule for target.
-roscpp_generate_messages_py/fast:
-	cd /home/andy/eye_op_robot_mixed/build && $(MAKE) -f eye_op_common/CMakeFiles/roscpp_generate_messages_py.dir/build.make eye_op_common/CMakeFiles/roscpp_generate_messages_py.dir/build
-.PHONY : roscpp_generate_messages_py/fast
-
-# Convenience name for target.
-eye_op_common/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule:
-	cd /home/andy/eye_op_robot_mixed/build && $(MAKE) -f CMakeFiles/Makefile2 eye_op_common/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
-.PHONY : eye_op_common/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_cpp: eye_op_common/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_cpp
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_cpp/fast:
-	cd /home/andy/eye_op_robot_mixed/build && $(MAKE) -f eye_op_common/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make eye_op_common/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
-.PHONY : rosgraph_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
-eye_op_common/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule:
-	cd /home/andy/eye_op_robot_mixed/build && $(MAKE) -f CMakeFiles/Makefile2 eye_op_common/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
-.PHONY : eye_op_common/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_lisp: eye_op_common/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_lisp
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_lisp/fast:
-	cd /home/andy/eye_op_robot_mixed/build && $(MAKE) -f eye_op_common/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make eye_op_common/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
-.PHONY : rosgraph_msgs_generate_messages_lisp/fast
-
-# Convenience name for target.
-eye_op_common/CMakeFiles/std_msgs_generate_messages_py.dir/rule:
-	cd /home/andy/eye_op_robot_mixed/build && $(MAKE) -f CMakeFiles/Makefile2 eye_op_common/CMakeFiles/std_msgs_generate_messages_py.dir/rule
-.PHONY : eye_op_common/CMakeFiles/std_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-std_msgs_generate_messages_py: eye_op_common/CMakeFiles/std_msgs_generate_messages_py.dir/rule
-
-.PHONY : std_msgs_generate_messages_py
-
-# fast build rule for target.
-std_msgs_generate_messages_py/fast:
-	cd /home/andy/eye_op_robot_mixed/build && $(MAKE) -f eye_op_common/CMakeFiles/std_msgs_generate_messages_py.dir/build.make eye_op_common/CMakeFiles/std_msgs_generate_messages_py.dir/build
-.PHONY : std_msgs_generate_messages_py/fast
-
-# Convenience name for target.
-eye_op_common/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule:
-	cd /home/andy/eye_op_robot_mixed/build && $(MAKE) -f CMakeFiles/Makefile2 eye_op_common/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
-.PHONY : eye_op_common/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-rosgraph_msgs_generate_messages_py: eye_op_common/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/rule
-
-.PHONY : rosgraph_msgs_generate_messages_py
-
-# fast build rule for target.
-rosgraph_msgs_generate_messages_py/fast:
-	cd /home/andy/eye_op_robot_mixed/build && $(MAKE) -f eye_op_common/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make eye_op_common/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
-.PHONY : rosgraph_msgs_generate_messages_py/fast
+# target to generate assembly for a file
+script/test_listener.cpp.s:
+	cd /home/andy/eye_op_robot_mixed/build && $(MAKE) -f eye_op_common/CMakeFiles/test_listener.dir/build.make eye_op_common/CMakeFiles/test_listener.dir/script/test_listener.cpp.s
+.PHONY : script/test_listener.cpp.s
 
 # Help Target
 help:
@@ -396,28 +213,17 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... install"
-	@echo "... install/local"
 	@echo "... list_install_components"
-	@echo "... install/strip"
-	@echo "... std_msgs_generate_messages_lisp"
-	@echo "... std_msgs_generate_messages_eus"
-	@echo "... std_msgs_generate_messages_nodejs"
-	@echo "... roscpp_generate_messages_lisp"
-	@echo "... test"
-	@echo "... roscpp_generate_messages_nodejs"
-	@echo "... roscpp_generate_messages_eus"
-	@echo "... std_msgs_generate_messages_cpp"
-	@echo "... roscpp_generate_messages_cpp"
+	@echo "... install"
 	@echo "... rebuild_cache"
-	@echo "... rosgraph_msgs_generate_messages_nodejs"
 	@echo "... edit_cache"
-	@echo "... rosgraph_msgs_generate_messages_eus"
-	@echo "... roscpp_generate_messages_py"
-	@echo "... rosgraph_msgs_generate_messages_cpp"
-	@echo "... rosgraph_msgs_generate_messages_lisp"
-	@echo "... std_msgs_generate_messages_py"
-	@echo "... rosgraph_msgs_generate_messages_py"
+	@echo "... test_listener"
+	@echo "... install/local"
+	@echo "... install/strip"
+	@echo "... test"
+	@echo "... script/test_listener.o"
+	@echo "... script/test_listener.i"
+	@echo "... script/test_listener.s"
 .PHONY : help
 
 
