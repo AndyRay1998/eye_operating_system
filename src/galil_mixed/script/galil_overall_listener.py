@@ -13,7 +13,7 @@ import gclib_python.example # galil api
 
 def gclib_command():
     pass
-    # to be continued
+    # TODO:to be continued
 
 def callback1(data1):
     rospy.loginfo(rospy.get_caller_id() + " python: Galil heard Hyperion")

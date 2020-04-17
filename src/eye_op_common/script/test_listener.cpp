@@ -1,3 +1,6 @@
+// NOTE： not finished yet. It may be a bad idea to mix C++ and python
+
+
 #include <python3.5/Python.h>
 #include <stdio.h>
 #include <iostream>
@@ -51,29 +54,34 @@ int main(int argc, char **argv)
 	PyObject * pFunc = NULL;    //声明变量
   //导入sys模块
   PyRun_SimpleString("import sys");
-  PyRun_SimpleString("sys.path.append('./')");
+  PyRun_SimpleString("import numpy as np");
+  PyRun_SimpleString("sys.path.append('/home/andy/eye_op_robot_mixed/src/eye_op_common/script')");
 	cout << "------------"<<endl;
-	pModule = PyImport_ImportModule("fw_kinematics");    //这里是要调用的Python文件名
+  PyRun_SimpleString("import eye_op_jacobian");
+	pModule = PyImport_ImportModule("eye_op_jacobian");    //这里是要调用的Python文件名
+  if (pModule == NULL) {
+    printf("ERROR importing module");
+}
 	cout << pModule << endl;
-  pFunc = PyObject_GetAttrString(pModule, "fw_kine"); //这里是要调用的函数名
+  pFunc = PyObject_GetAttrString(pModule, "cal_jacobian_O30"); //这里是要调用的函数名
 
   // 设置参数
-	PyObject* args = PyTuple_New(7);       // 2个参数
+	PyObject* args = PyTuple_New(2);       // 2个参数
 	//PyObject* arg1 = PyUnicode_FromString("hello");    // 参数一设为，字符串
 	PyObject* arg1 = PyLong_FromLong(0);    // 参数二设为，一个整数，用long表示
 	PyObject* arg2 = PyLong_FromLong(0);    // 参数二设为，一个整数，用long表示
-  PyObject* arg3 = PyLong_FromLong(0);
+  /*PyObject* arg3 = PyLong_FromLong(0);
   PyObject* arg4 = PyLong_FromLong(0);
   PyObject* arg5 = PyLong_FromLong(78.081811);
   PyObject* arg6 = PyLong_FromLong(37.873248);
-  PyObject* arg7 = PyLong_FromLong(0);
+  PyObject* arg7 = PyLong_FromLong(0);*/
 	PyTuple_SetItem(args, 0, arg1);
 	PyTuple_SetItem(args, 1, arg2);
-  PyTuple_SetItem(args, 2, arg3);
+  /*PyTuple_SetItem(args, 2, arg3);
   PyTuple_SetItem(args, 3, arg4);
   PyTuple_SetItem(args, 4, arg5);
   PyTuple_SetItem(args, 5, arg6);
-  PyTuple_SetItem(args, 6, arg7);
+  PyTuple_SetItem(args, 6, arg7);*/
 
   // 调用函数`
 	PyObject* pRet = PyObject_CallObject(pFunc, args);

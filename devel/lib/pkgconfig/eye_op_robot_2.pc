@@ -1,0 +1,8 @@
+prefix=/home/andy/eye_op_robot_mixed/devel
+
+Name: eye_op_robot_2
+Description: Description of eye_op_robot_2
+Version: 1.0.0
+Cflags: 
+Libs: -L/home/andy/eye_op_robot_mixed/devel/lib 
+Requires: 

@@ -1953,6 +1953,3 @@ class AsyncHyperion(object):
         """
 
         await self._execute_command('#saveSensors')
-
-
-

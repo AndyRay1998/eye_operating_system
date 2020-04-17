@@ -6,6 +6,26 @@
 
 #IncludeRegexTransform: 
 
+/home/andy/eye_op_robot_mixed/devel/include/omni_msgs/OmniFeedback.h
+string
+-
+vector
+-
+map
+-
+ros/types.h
+-
+ros/serialization.h
+-
+ros/builtin_message_traits.h
+-
+ros/message_operations.h
+-
+geometry_msgs/Vector3.h
+-
+geometry_msgs/Vector3.h
+-
+
 /home/andy/eye_op_robot_mixed/src/hyperion_mixed/script/hyperion_talker.cpp
 ros/ros.h
 /home/andy/eye_op_robot_mixed/src/hyperion_mixed/script/ros/ros.h
@@ -13,8 +33,6 @@ std_msgs/Float32MultiArray.h
 /home/andy/eye_op_robot_mixed/src/hyperion_mixed/script/std_msgs/Float32MultiArray.h
 ../src/Hyperion_CPP_API/hLibrary.h
 /home/andy/eye_op_robot_mixed/src/hyperion_mixed/src/Hyperion_CPP_API/hLibrary.h
-../src/hyperion_get_peaks.h
-/home/andy/eye_op_robot_mixed/src/hyperion_mixed/src/hyperion_get_peaks.h
 sstream
 -
 iostream
@@ -35,6 +53,8 @@ ctype.h
 -
 vector
 -
+omni_msgs/OmniFeedback.h
+/home/andy/eye_op_robot_mixed/src/hyperion_mixed/script/omni_msgs/OmniFeedback.h
 
 /home/andy/eye_op_robot_mixed/src/hyperion_mixed/src/Hyperion_CPP_API/hCommLibrary.h
 stdio.h
@@ -67,10 +87,24 @@ time.h
 -
 hCommLibrary.h
 /home/andy/eye_op_robot_mixed/src/hyperion_mixed/src/Hyperion_CPP_API/hCommLibrary.h
+stdint.h
+-
 
-/home/andy/eye_op_robot_mixed/src/hyperion_mixed/src/hyperion_get_peaks.h
-Hyperion_CPP_API/hLibrary.h
-/home/andy/eye_op_robot_mixed/src/hyperion_mixed/src/Hyperion_CPP_API/hLibrary.h
+/opt/ros/kinetic/include/geometry_msgs/Vector3.h
+string
+-
+vector
+-
+map
+-
+ros/types.h
+-
+ros/serialization.h
+-
+ros/builtin_message_traits.h
+-
+ros/message_operations.h
+-
 
 /opt/ros/kinetic/include/ros/advertise_options.h
 ros/forwards.h

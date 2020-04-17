@@ -987,61 +987,6 @@ clean: galil_mixed/CMakeFiles/std_msgs_generate_messages_lisp.dir/clean
 .PHONY : clean
 
 #=============================================================================
-# Directory level rules for directory hyperion_mixed
-
-# Convenience name for "all" pass in the directory.
-hyperion_mixed/all: hyperion_mixed/CMakeFiles/hyperion_talker.dir/all
-
-.PHONY : hyperion_mixed/all
-
-# Convenience name for "clean" pass in the directory.
-hyperion_mixed/clean: hyperion_mixed/CMakeFiles/hyperion_talker.dir/clean
-
-.PHONY : hyperion_mixed/clean
-
-# Convenience name for "preinstall" pass in the directory.
-hyperion_mixed/preinstall:
-
-.PHONY : hyperion_mixed/preinstall
-
-#=============================================================================
-# Target rules for target hyperion_mixed/CMakeFiles/hyperion_talker.dir
-
-# All Build rule for target.
-hyperion_mixed/CMakeFiles/hyperion_talker.dir/all:
-	$(MAKE) -f hyperion_mixed/CMakeFiles/hyperion_talker.dir/build.make hyperion_mixed/CMakeFiles/hyperion_talker.dir/depend
-	$(MAKE) -f hyperion_mixed/CMakeFiles/hyperion_talker.dir/build.make hyperion_mixed/CMakeFiles/hyperion_talker.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/andy/eye_op_robot_mixed/build/CMakeFiles --progress-num=14,15 "Built target hyperion_talker"
-.PHONY : hyperion_mixed/CMakeFiles/hyperion_talker.dir/all
-
-# Include target in all.
-all: hyperion_mixed/CMakeFiles/hyperion_talker.dir/all
-
-.PHONY : all
-
-# Build rule for subdir invocation for target.
-hyperion_mixed/CMakeFiles/hyperion_talker.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/andy/eye_op_robot_mixed/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 hyperion_mixed/CMakeFiles/hyperion_talker.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/andy/eye_op_robot_mixed/build/CMakeFiles 0
-.PHONY : hyperion_mixed/CMakeFiles/hyperion_talker.dir/rule
-
-# Convenience name for target.
-hyperion_talker: hyperion_mixed/CMakeFiles/hyperion_talker.dir/rule
-
-.PHONY : hyperion_talker
-
-# clean rule for target.
-hyperion_mixed/CMakeFiles/hyperion_talker.dir/clean:
-	$(MAKE) -f hyperion_mixed/CMakeFiles/hyperion_talker.dir/build.make hyperion_mixed/CMakeFiles/hyperion_talker.dir/clean
-.PHONY : hyperion_mixed/CMakeFiles/hyperion_talker.dir/clean
-
-# clean rule for target.
-clean: hyperion_mixed/CMakeFiles/hyperion_talker.dir/clean
-
-.PHONY : clean
-
-#=============================================================================
 # Directory level rules for directory omni_packages/omni_msgs
 
 # Convenience name for "all" pass in the directory.
@@ -1940,6 +1885,61 @@ clean: eye_op_common/CMakeFiles/test_listener.dir/clean
 .PHONY : clean
 
 #=============================================================================
+# Directory level rules for directory hyperion_mixed
+
+# Convenience name for "all" pass in the directory.
+hyperion_mixed/all: hyperion_mixed/CMakeFiles/hyperion_talker.dir/all
+
+.PHONY : hyperion_mixed/all
+
+# Convenience name for "clean" pass in the directory.
+hyperion_mixed/clean: hyperion_mixed/CMakeFiles/hyperion_talker.dir/clean
+
+.PHONY : hyperion_mixed/clean
+
+# Convenience name for "preinstall" pass in the directory.
+hyperion_mixed/preinstall:
+
+.PHONY : hyperion_mixed/preinstall
+
+#=============================================================================
+# Target rules for target hyperion_mixed/CMakeFiles/hyperion_talker.dir
+
+# All Build rule for target.
+hyperion_mixed/CMakeFiles/hyperion_talker.dir/all:
+	$(MAKE) -f hyperion_mixed/CMakeFiles/hyperion_talker.dir/build.make hyperion_mixed/CMakeFiles/hyperion_talker.dir/depend
+	$(MAKE) -f hyperion_mixed/CMakeFiles/hyperion_talker.dir/build.make hyperion_mixed/CMakeFiles/hyperion_talker.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/andy/eye_op_robot_mixed/build/CMakeFiles --progress-num=14,15 "Built target hyperion_talker"
+.PHONY : hyperion_mixed/CMakeFiles/hyperion_talker.dir/all
+
+# Include target in all.
+all: hyperion_mixed/CMakeFiles/hyperion_talker.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+hyperion_mixed/CMakeFiles/hyperion_talker.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/andy/eye_op_robot_mixed/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 hyperion_mixed/CMakeFiles/hyperion_talker.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/andy/eye_op_robot_mixed/build/CMakeFiles 0
+.PHONY : hyperion_mixed/CMakeFiles/hyperion_talker.dir/rule
+
+# Convenience name for target.
+hyperion_talker: hyperion_mixed/CMakeFiles/hyperion_talker.dir/rule
+
+.PHONY : hyperion_talker
+
+# clean rule for target.
+hyperion_mixed/CMakeFiles/hyperion_talker.dir/clean:
+	$(MAKE) -f hyperion_mixed/CMakeFiles/hyperion_talker.dir/build.make hyperion_mixed/CMakeFiles/hyperion_talker.dir/clean
+.PHONY : hyperion_mixed/CMakeFiles/hyperion_talker.dir/clean
+
+# clean rule for target.
+clean: hyperion_mixed/CMakeFiles/hyperion_talker.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
 # Directory level rules for directory omni_packages/omni_common
 
 # Convenience name for "all" pass in the directory.
@@ -2808,6 +2808,24 @@ omni_packages/omni_description/clean:
 omni_packages/omni_description/preinstall:
 
 .PHONY : omni_packages/omni_description/preinstall
+
+#=============================================================================
+# Directory level rules for directory eye_op_robotics
+
+# Convenience name for "all" pass in the directory.
+eye_op_robotics/all:
+
+.PHONY : eye_op_robotics/all
+
+# Convenience name for "clean" pass in the directory.
+eye_op_robotics/clean:
+
+.PHONY : eye_op_robotics/clean
+
+# Convenience name for "preinstall" pass in the directory.
+eye_op_robotics/preinstall:
+
+.PHONY : eye_op_robotics/preinstall
 
 #=============================================================================
 # Directory level rules for directory yamaha_mixed

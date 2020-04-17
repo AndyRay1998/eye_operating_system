@@ -1,7 +1,6 @@
 #include "ros/ros.h"
 #include "std_msgs/Float32MultiArray.h"
 #include "../src/Hyperion_CPP_API/hLibrary.h"
-#include "../src/hyperion_get_peaks.h"
 
 #include <sstream>
 #include <iostream>
@@ -14,6 +13,7 @@
 #include <ctype.h>
 #include <vector>
 
+#include "omni_msgs/OmniFeedback.h"
 
 void hyperion_talker(ros::NodeHandle n)
 {
@@ -67,7 +67,7 @@ void hyperion_commu(ros::NodeHandle nh, std::vector<double> allPeaks, std::vecto
     std::cout << "\033[31m [WARN] Hyperion connection failed \033[0m""" << std::endl;
     exit(0);
   }
-  // test.test_print();
+  // test_print();
   // test.networkconfiguration();
   // test.networkconfiguration(current_address, "hyperion")
   // test.get_peaks(allPeaks, wavelength)

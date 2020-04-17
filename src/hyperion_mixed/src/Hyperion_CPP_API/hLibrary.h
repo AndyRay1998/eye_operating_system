@@ -16,7 +16,7 @@
 #include <time.h>
 
 #include "hCommLibrary.h"
-
+#include <stdint.h>
 #define H_LIB_VERSION "0.9.5.0"
 
 #define SUCCESS 0

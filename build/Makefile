@@ -504,19 +504,6 @@ std_msgs_generate_messages_lisp/fast:
 .PHONY : std_msgs_generate_messages_lisp/fast
 
 #=============================================================================
-# Target rules for targets named hyperion_talker
-
-# Build rule for target.
-hyperion_talker: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 hyperion_talker
-.PHONY : hyperion_talker
-
-# fast build rule for target.
-hyperion_talker/fast:
-	$(MAKE) -f hyperion_mixed/CMakeFiles/hyperion_talker.dir/build.make hyperion_mixed/CMakeFiles/hyperion_talker.dir/build
-.PHONY : hyperion_talker/fast
-
-#=============================================================================
 # Target rules for targets named omni_msgs_genpy
 
 # Build rule for target.
@@ -840,6 +827,19 @@ test_listener: cmake_check_build_system
 test_listener/fast:
 	$(MAKE) -f eye_op_common/CMakeFiles/test_listener.dir/build.make eye_op_common/CMakeFiles/test_listener.dir/build
 .PHONY : test_listener/fast
+
+#=============================================================================
+# Target rules for targets named hyperion_talker
+
+# Build rule for target.
+hyperion_talker: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 hyperion_talker
+.PHONY : hyperion_talker
+
+# fast build rule for target.
+hyperion_talker/fast:
+	$(MAKE) -f hyperion_mixed/CMakeFiles/hyperion_talker.dir/build.make hyperion_mixed/CMakeFiles/hyperion_talker.dir/build
+.PHONY : hyperion_talker/fast
 
 #=============================================================================
 # Target rules for targets named actionlib_generate_messages_py
@@ -1179,7 +1179,6 @@ help:
 	@echo "... roscpp_generate_messages_lisp"
 	@echo "... std_msgs_generate_messages_eus"
 	@echo "... std_msgs_generate_messages_lisp"
-	@echo "... hyperion_talker"
 	@echo "... omni_msgs_genpy"
 	@echo "... omni_msgs_generate_messages_py"
 	@echo "... _omni_msgs_generate_messages_check_deps_OmniFeedback"
@@ -1205,6 +1204,7 @@ help:
 	@echo "... omni_msgs_genlisp"
 	@echo "... omni_msgs_gennodejs"
 	@echo "... test_listener"
+	@echo "... hyperion_talker"
 	@echo "... actionlib_generate_messages_py"
 	@echo "... tf_generate_messages_py"
 	@echo "... actionlib_msgs_generate_messages_lisp"

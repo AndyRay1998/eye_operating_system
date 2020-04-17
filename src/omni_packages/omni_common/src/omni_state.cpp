@@ -82,7 +82,6 @@ public:
     state_publisher = n.advertise<omni_msgs::OmniState>(state_topic_name.c_str(), 1);
 
     //Subscribe to NAME/force_feedback
-    // TODO about this: hyperion_talker publish
     std::ostringstream stream3;
     stream3 << omni_name << "/force_feedback";
     std::string force_feedback_topic = std::string(stream3.str());

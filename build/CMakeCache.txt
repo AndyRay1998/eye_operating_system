@@ -284,6 +284,24 @@ eye_op_common_BINARY_DIR:STATIC=/home/andy/eye_op_robot_mixed/build/eye_op_commo
 eye_op_common_SOURCE_DIR:STATIC=/home/andy/eye_op_robot_mixed/src/eye_op_common
 
 //Value Computed by CMake
+eye_op_robot_2_BINARY_DIR:STATIC=/home/andy/eye_op_robot_mixed/build/eye_op_robot_2
+
+//Value Computed by CMake
+eye_op_robot_2_SOURCE_DIR:STATIC=/home/andy/eye_op_robot_mixed/src/eye_op_robot_2
+
+//Value Computed by CMake
+eye_op_robot_BINARY_DIR:STATIC=/home/andy/eye_op_robot_mixed/build/eye_op_robot
+
+//Value Computed by CMake
+eye_op_robot_SOURCE_DIR:STATIC=/home/andy/eye_op_robot_mixed/src/eye_op_robot
+
+//Value Computed by CMake
+eye_op_robotics_BINARY_DIR:STATIC=/home/andy/eye_op_robot_mixed/build/eye_op_robotics
+
+//Value Computed by CMake
+eye_op_robotics_SOURCE_DIR:STATIC=/home/andy/eye_op_robot_mixed/src/eye_op_robotics
+
+//Value Computed by CMake
 galil_mixed_BINARY_DIR:STATIC=/home/andy/eye_op_robot_mixed/build/galil_mixed
 
 //Value Computed by CMake
@@ -415,6 +433,9 @@ rosgraph_DIR:PATH=/opt/ros/kinetic/share/rosgraph/cmake
 
 //The directory containing a CMake configuration file for rosgraph_msgs.
 rosgraph_msgs_DIR:PATH=/opt/ros/kinetic/share/rosgraph_msgs/cmake
+
+//The directory containing a CMake configuration file for roslaunch.
+roslaunch_DIR:PATH=/opt/ros/kinetic/share/roslaunch/cmake
 
 //The directory containing a CMake configuration file for rospy.
 rospy_DIR:PATH=/opt/ros/kinetic/share/rospy/cmake
@@ -560,7 +581,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=11
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=12
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
