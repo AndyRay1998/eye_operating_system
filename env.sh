@@ -2,6 +2,8 @@
 
 source devel/setup.bash
 
+chmod +x `find . -name "*.py"`
+
 sudo apt-get install --no-install-recommends freeglut3-dev g++ libdrm-dev \
 libexpat1-dev libncurses5-dev libraw1394-dev libx11-dev libxdamage-dev    \
 libxext-dev libxt-dev libxxf86vm-dev tcsh unzip x11proto-dri2-dev         \
@@ -27,4 +29,3 @@ catkin_make
 
 echo "The API should have been installed successfully!"
 echo "But still you must check 'http://fsuarez6.github.io/projects/geomagic-touch-in-ros/' for more details!"
-

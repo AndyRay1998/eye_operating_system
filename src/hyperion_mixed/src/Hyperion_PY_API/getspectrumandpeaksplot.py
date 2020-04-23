@@ -4,9 +4,7 @@
 #
 # Copyright (c) 2018 by Micron Optics, Inc.  All Rights Reserved
 #
-"""This example will plot a spectrum and the corresponding peaks.  This
-requires numpy, scilab, and matplotlib packages.
-"""
+
 # import matplotlib
 # matplotlib.use('tkagg') # agg set to enable plotting in tkinter
 import numpy as np
@@ -17,7 +15,7 @@ import sys
 
 from . import hyperion
 
-def getpeaks(current_address='10.0.10.71', ref_wavelen = 1550) -> numpy.array:
+def getpeaks(current_address='10.0.10.71', ref_wavelen = 1550) -> np.array:
 
     h = hyperion.Hyperion(current_address)
 
@@ -30,7 +28,7 @@ def getpeaks(current_address='10.0.10.71', ref_wavelen = 1550) -> numpy.array:
     wavelengths = spectra.wavelengths
 
     # wavelengths and spectrum are dispersed； use them to interpolate
-    interpSpectrum1 = interp1d(wavelengths spectrum[0])
+    interpSpectrum1 = interp1d(wavelengths, spectrum[0])
     # pick the largest peak spectrum in wavelength
     # np.where returns a tuple: (np.array([6])), so the '[0][0]'
     wavelength1 = peaks[0][np.where((interpSpectrum1(peaks[0])))[0][0]]

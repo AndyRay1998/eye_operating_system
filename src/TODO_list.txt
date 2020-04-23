@@ -1,2 +1,10 @@
-hyperion_talker.py: test hyperion data process and publish program
+hyperion_talker.py: test hyperion data process and publish program and annotation removal
+
 hyperion_talker.cpp: catkin_make include dir problem
+
+galil_command.py: 1. confirm all values in G command;
+                  2. convert position values to degrees
+                  3. setup software limits?
+  -> galil_overall_listener.py: test and annotation removal
+
+omni_state.cpp: confirm axis of three velocities published

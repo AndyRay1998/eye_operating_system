@@ -8,8 +8,7 @@ Four devices are used:
 * Omni Phantom https://www.3dsystems.com/haptics-devices/touch  
   
 ## Getting Started
-The following content will help you deploy this project to your PC smoothly.  
-Please read carefully.  
+The following content will help you deploy this project to your PC smoothly. Please read carefully.  
   
 ## Author Info
 Unit: Beihang University, Beijing, China  
@@ -54,7 +53,7 @@ $ roslaunch omni_common omni.launch
   
 ## Scripting Languages  
 This workspace include both .cpp and .py executable files for flexibility and robustness.  
-The default language is c++ because of its high effectiveness.  
+Because of time limit, I will first complete python scripts although it may be slower sometimes.  
 NOTE that at present galil ,hyperion and YAMAHA (serial port) provide c++ support.  
   
 ## Usage of roslaunch - Entrance of Project
@@ -90,6 +89,7 @@ There are five folders inside `src`.
 `galil_mixed` is for Galil motion control card. API locates in ```src``` and executable scripts are in `script`.  
 `yamaha_mixed` is for Galil motion control card. API locates in ```src``` and executable scripts are in `script`.  
 `omni_packages` is not a ROS package itself, but those four folders inside it are. `omni_packages` is just for better file structure. And those four packages inside are Omni API that you should have installed following previous instruction.  
+`eye_op_robotics` is mainly for jacobian matrix verification. Read `joint_state_pub.py` carefully for instruction. `display.launch` will evoke rviz and GUI for interaction. `simulation.launch` enables observation of speed control performance.
 
 ## License
 This project is released under MIT license.  

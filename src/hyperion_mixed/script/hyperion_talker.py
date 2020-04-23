@@ -18,6 +18,7 @@ import Hyperion_PY_API.getspectrumandpeaksplot
 def hyperion_force(address, ref_wavelen):
     '''
     return force feedback np.array([[f_x], [f_y]])
+    Calculation detail is from a Chinese essay located in "/hyperion_mixed"
     '''
     try:
         # Connection of hyperion device (we may not need this)
@@ -29,7 +30,7 @@ def hyperion_force(address, ref_wavelen):
         '''
         wave_diff = getspectrumandpeaksplot.getpeaks(address, ref_wavelen)
         # Calculation referenced from essay
-        lbd_m = (wave_diff[0] + wave_diff[1] + wave_diff[2]) / 3
+        lbd_m = np.sum(wave_diff) / 3
         lbd_1 = wave_diff[0] - lbd_m
         lbd_2 = wave_diff[1] - lbd_m
         lbd_3 = wave_diff[2] - lbd_m
@@ -49,6 +50,7 @@ def hyperion_force(address, ref_wavelen):
         sys.exit()
 
 
+# calculate reference wavelength during initialization
 def wavelength_calibrate(address):
     ref_wavelen = 0
     for i in range(20):
@@ -109,10 +111,11 @@ if __name__ == '__main__':
     rospy.init_node('Hyperion_talker', anonymous=False)
     rate = rospy.Rate(11) # 11hz
 
+    # retrieve parameter from .launch file
     current_address = rospy.get_param("~Hyperion_address")
 
     # reference wavelength calibration
-    ref_wavelen = wavelength_calibrate(current_address):
+    # ref_wavelen = wavelength_calibrate(current_address)
     # TODO: test retrieve and process hyperion data
     # f_x, f_y = hyperion_force(current_address, ref_wavelen)
 

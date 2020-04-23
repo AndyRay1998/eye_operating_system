@@ -73,10 +73,10 @@ omni_packages/omni_msgs/CMakeFiles/omni_msgs_generate_messages_cpp: /home/andy/e
 
 /home/andy/eye_op_robot_mixed/devel/include/omni_msgs/OmniState.h: /opt/ros/kinetic/lib/gencpp/gen_cpp.py
 /home/andy/eye_op_robot_mixed/devel/include/omni_msgs/OmniState.h: /home/andy/eye_op_robot_mixed/src/omni_packages/omni_msgs/msg/OmniState.msg
-/home/andy/eye_op_robot_mixed/devel/include/omni_msgs/OmniState.h: /opt/ros/kinetic/share/geometry_msgs/msg/Point.msg
-/home/andy/eye_op_robot_mixed/devel/include/omni_msgs/OmniState.h: /opt/ros/kinetic/share/geometry_msgs/msg/Pose.msg
-/home/andy/eye_op_robot_mixed/devel/include/omni_msgs/OmniState.h: /opt/ros/kinetic/share/geometry_msgs/msg/Vector3.msg
 /home/andy/eye_op_robot_mixed/devel/include/omni_msgs/OmniState.h: /opt/ros/kinetic/share/std_msgs/msg/Header.msg
+/home/andy/eye_op_robot_mixed/devel/include/omni_msgs/OmniState.h: /opt/ros/kinetic/share/geometry_msgs/msg/Point.msg
+/home/andy/eye_op_robot_mixed/devel/include/omni_msgs/OmniState.h: /opt/ros/kinetic/share/geometry_msgs/msg/Vector3.msg
+/home/andy/eye_op_robot_mixed/devel/include/omni_msgs/OmniState.h: /opt/ros/kinetic/share/geometry_msgs/msg/Pose.msg
 /home/andy/eye_op_robot_mixed/devel/include/omni_msgs/OmniState.h: /opt/ros/kinetic/share/geometry_msgs/msg/Quaternion.msg
 /home/andy/eye_op_robot_mixed/devel/include/omni_msgs/OmniState.h: /opt/ros/kinetic/share/gencpp/msg.h.template
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/andy/eye_op_robot_mixed/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating C++ code from omni_msgs/OmniState.msg"

@@ -2,36 +2,55 @@
 # REMEMBER: chmod +x XX.py
 
 import rospy
-from std_msgs.msg import Float32MultiArray
 
+import galil_command as g_command
+
+# galil API
 import sys
 sys.path.append(sys.path[0] + '/../src')
+import gclib_python.gclib as gclib
 
-import gclib_python.example # galil api
+# use omni customed message type
+from omni_msgs.msg import OmniState
 
 
+def callback(data, args):
 
-def gclib_command():
-    pass
-    # TODO:to be continued
-
-def callback1(data1):
-    rospy.loginfo(rospy.get_caller_id() + " python: Galil heard Hyperion")
-    rospy.loginfo(f"data length is: {len(data1.data)}")
-    rospy.loginfo(data1.data)
-
-def callback2(data2):
     rospy.loginfo(rospy.get_caller_id() + " python: Galil heard Omni")
 
-def galil_listener():
-    rospy.init_node('Galil_overall_listener', anonymous=False)
-    rospy.Subscriber("Hyperion_data", Float32MultiArray, callback1)
-    rospy.Subscriber("Omni_data", Float32MultiArray, callback2)
+    rospy.loginfo(data)
 
-    # gclib_command()
+    v1 = data.velocity.x
+    v2 = data.velocity.y
+    v3 = data.velocity.z
 
+    # TODO: velocity transform using jacobian
+    # Galil velocity control
+    # g_command.g_jog(v1, v2, v3, g)
+
+
+def galil_listener(g):
+    rospy.Subscriber("joint_states", OmniState, callback, g)
     rospy.spin()
 
+
 if __name__ == '__main__':
-    global data1, data2
-    galil_listener()
+    # ROS init
+    rospy.init_node('Galil_overall_listener', anonymous=False)
+
+    # retrieve parameter from .launch file
+    galil_address = rospy.get_param("~Galil_address")
+
+    # galil card connection
+    # g = g_command.g_init(galil_address)
+    # TODO: the following g is for test only
+    g = gclib.py()
+    # data listening and galil command
+    try:
+        galil_listener(g)
+    except:
+        pass
+    finally:
+        # Close galil connection
+        # g.GClose()
+        pass

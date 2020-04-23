@@ -1,0 +1,563 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com)
+     Commit Version: 1.5.1-0-g916b5db  Build Version: 1.5.7152.31018
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="eye_robotics_2">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="-0.0238005358984902 7.38684680795521E-06 0.19192082135837"
+        rpy="0 0 0" />
+      <mass
+        value="0.384019501922379" />
+      <inertia
+        ixx="0.00037648049249323"
+        ixy="-1.86655934883142E-07"
+        ixz="7.23682486620712E-07"
+        iyy="0.000691074966331848"
+        iyz="-2.24605516922303E-10"
+        izz="0.00105713750177639" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://eye_robotics_2/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.894117647058823 0.913725490196078 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://eye_robotics_2/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="link_1">
+    <inertial>
+      <origin
+        xyz="0.100797473862999 9.75750207964365E-05 -0.0119251219533321"
+        rpy="0 0 0" />
+      <mass
+        value="1.46370175335147" />
+      <inertia
+        ixx="0.00106648086469304"
+        ixy="-8.16970648484332E-06"
+        ixz="0.00014263499229849"
+        iyy="0.008676502815725"
+        iyz="8.86252699776458E-08"
+        izz="0.00961281310495378" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://eye_robotics_2/meshes/link_1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.894117647058823 0.913725490196078 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://eye_robotics_2/meshes/link_1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_1"
+    type="revolute">
+    <origin
+      xyz="0 0 0.2428"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="link_1" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-0.5235987"
+      upper="0.5235987"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="link_2">
+    <inertial>
+      <origin
+        xyz="0.0434941937071998 6.63065378990191E-05 0.041333956225932"
+        rpy="0 0 0" />
+      <mass
+        value="0.701134936853284" />
+      <inertia
+        ixx="0.00280293008059324"
+        ixy="1.90190685009045E-06"
+        ixz="-4.49171603235318E-05"
+        iyy="0.00267008024448423"
+        iyz="1.16083816001134E-07"
+        izz="0.000739304049211524" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://eye_robotics_2/meshes/link_2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://eye_robotics_2/meshes/link_2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_2"
+    type="revolute">
+    <origin
+      xyz="0.2 0 0.0303"
+      rpy="0 0 0" />
+    <parent
+      link="link_1" />
+    <child
+      link="link_2" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-0.5235987"
+      upper="0.5235987"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="link_3">
+    <inertial>
+      <origin
+        xyz="-0.030022019225413 0.0142338341360965 0.0102395532586211"
+        rpy="0 0 0" />
+      <mass
+        value="0.414852305243674" />
+      <inertia
+        ixx="0.000295687038913697"
+        ixy="1.55261476772924E-05"
+        ixz="0.000116580303769062"
+        iyy="0.00098470595032623"
+        iyz="-3.42372209267644E-06"
+        izz="0.000782496128442804" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://eye_robotics_2/meshes/link_3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://eye_robotics_2/meshes/link_3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_3"
+    type="prismatic">
+    <origin
+      xyz="0.0865 0 0"
+      rpy="0 0 -1.5708" />
+    <parent
+      link="link_2" />
+    <child
+      link="link_3" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="0"
+      upper="0.08"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="link_4">
+    <inertial>
+      <origin
+        xyz="-0.0030133954132826 7.36834133241437E-06 1.09665768302722E-05"
+        rpy="0 0 0" />
+      <mass
+        value="0.00646337305599087" />
+      <inertia
+        ixx="8.7126276838155E-08"
+        ixy="9.83550461976546E-11"
+        ixz="1.46385478633911E-10"
+        iyy="2.19382842685933E-07"
+        iyz="2.35555780033846E-10"
+        izz="2.19575161381821E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://eye_robotics_2/meshes/link_4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.529411764705882 0.549019607843137 0.549019607843137 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://eye_robotics_2/meshes/link_4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_4"
+    type="revolute">
+    <origin
+      xyz="0 0.406 0"
+      rpy="2.1612 -1.5708 2.5455" />
+    <parent
+      link="link_3" />
+    <child
+      link="link_4" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-0.5235987"
+      upper="0.5235987"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="link_5">
+    <inertial>
+      <origin
+        xyz="-1.09665768327216E-05 -0.00301339541339821 -7.36834149278609E-06"
+        rpy="0 0 0" />
+      <mass
+        value="0.00646337305599087" />
+      <inertia
+        ixx="2.19575161381821E-07"
+        ixy="-1.46385478633905E-10"
+        ixz="2.35555780033873E-10"
+        iyy="8.7126276838155E-08"
+        iyz="-9.83550461974802E-11"
+        izz="2.19382842685933E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://eye_robotics_2/meshes/link_5.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.529411764705882 0.549019607843137 0.549019607843137 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://eye_robotics_2/meshes/link_5.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_5"
+    type="revolute">
+    <origin
+      xyz="0 0 0"
+      rpy="-0.034643 1.5708 -1.6028" />
+    <parent
+      link="link_4" />
+    <child
+      link="link_5" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-0.5236"
+      upper="0.5236"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="link_6">
+    <inertial>
+      <origin
+        xyz="-1.09665768405626E-05 -7.36834132841757E-06 -0.0400652264927998"
+        rpy="0 0 0" />
+      <mass
+        value="0.00646337305599087" />
+      <inertia
+        ixx="2.19575161381821E-07"
+        ixy="2.35555780033873E-10"
+        ixz="1.46385478634158E-10"
+        iyy="2.19382842685933E-07"
+        iyz="9.83550461975134E-11"
+        izz="8.71262768381551E-08" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://eye_robotics_2/meshes/link_6.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.529411764705882 0.549019607843137 0.549019607843137 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://eye_robotics_2/meshes/link_6.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint_6"
+    type="prismatic">
+    <origin
+      xyz="0 -0.043079 0"
+      rpy="1.5708 0 0" />
+    <parent
+      link="link_5" />
+    <child
+      link="link_6" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-0.056"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="link5_2">
+    <inertial>
+      <origin
+        xyz="0.0016081805363357 0.0379170527371702 -1.35239873466642E-07"
+        rpy="0 0 0" />
+      <mass
+        value="0.144603023556278" />
+      <inertia
+        ixx="2.89612639945818E-05"
+        ixy="4.16859703859478E-08"
+        ixz="-2.02205366516955E-10"
+        iyy="1.23081859778174E-05"
+        iyz="3.23886844332158E-10"
+        izz="2.65245308288064E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://eye_robotics_2/meshes/link5_2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://eye_robotics_2/meshes/link5_2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint5_2"
+    type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="link_5" />
+    <child
+      link="link5_2" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="link4_1">
+    <inertial>
+      <origin
+        xyz="-0.0171384948405487 4.64731327126655E-06 -0.206819301133627"
+        rpy="0 0 0" />
+      <mass
+        value="0.846495635729555" />
+      <inertia
+        ixx="0.0039250199864696"
+        ixy="-4.26414779204027E-08"
+        ixz="4.6238106334488E-05"
+        iyy="0.00390863229942923"
+        iyz="-1.18211486439033E-09"
+        izz="0.000106458939819231" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://eye_robotics_2/meshes/link4_1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.894117647058823 0.913725490196078 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://eye_robotics_2/meshes/link4_1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint4_1"
+    type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="link_4" />
+    <child
+      link="link4_1" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="link4_2">
+    <inertial>
+      <origin
+        xyz="-2.1971430385348E-06 0.0456843117251527 1.0360976410162E-06"
+        rpy="0 0 0" />
+      <mass
+        value="0.027407637526398" />
+      <inertia
+        ixx="1.31322951526789E-05"
+        ixy="-2.92830292251604E-09"
+        ixz="-1.58655148907872E-10"
+        iyy="3.93095774550966E-06"
+        iyz="3.05579683156541E-10"
+        izz="1.06475052848807E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://eye_robotics_2/meshes/link4_2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://eye_robotics_2/meshes/link4_2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint4_2"
+    type="revolute">
+    <origin
+      xyz="0 0 -0.075"
+      rpy="-0.17703 1.5708 -1.7452" />
+    <parent
+      link="link_4" />
+    <child
+      link="link4_2" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-0.5235987"
+      upper="0.5235987"
+      effort="0"
+      velocity="0" />
+    <mimic
+      joint="joint_5"
+      multiplier="1"
+      offset="0" />
+  </joint>
+</robot>

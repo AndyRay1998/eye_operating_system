@@ -5,7 +5,6 @@ import numpy as np
 from omni_msgs.msg import OmniState
 
 
-
 def talker(pub):
 
     common_data = OmniState()
@@ -30,4 +29,3 @@ if __name__ == '__main__':
         talker(pub)
     except rospy.ROSInterruptException:
         rospy.logerr("common_data error")
-        pass
