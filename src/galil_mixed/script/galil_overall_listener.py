@@ -2,19 +2,16 @@
 # REMEMBER: chmod +x XX.py
 
 import rospy
-
-import galil_command as g_command
-
+from galil_command import g_control
 # galil API
 import sys
 sys.path.append(sys.path[0] + '/../src')
 import gclib_python.gclib as gclib
-
 # use omni customed message type
 from omni_msgs.msg import OmniState
 
 
-def callback(data, args):
+def callback(data):
 
     rospy.loginfo(rospy.get_caller_id() + " python: Galil heard Omni")
 
@@ -26,11 +23,11 @@ def callback(data, args):
 
     # TODO: velocity transform using jacobian
     # Galil velocity control
-    # g_command.g_jog(v1, v2, v3, g)
+    # g.g_jog(v1, v2, v3)
 
 
-def galil_listener(g):
-    rospy.Subscriber("joint_states", OmniState, callback, g)
+def galil_listener():
+    rospy.Subscriber("joint_states", OmniState, callback)
     rospy.spin()
 
 
@@ -42,15 +39,15 @@ if __name__ == '__main__':
     galil_address = rospy.get_param("~Galil_address")
 
     # galil card connection
-    # g = g_command.g_init(galil_address)
-    # TODO: the following g is for test only
-    g = gclib.py()
+    g = g_control(galil_address)
+    # g.connect()
+
     # data listening and galil command
     try:
-        galil_listener(g)
+        galil_listener()
     except:
         pass
     finally:
         # Close galil connection
-        # g.GClose()
+        # g.disconnect()
         pass

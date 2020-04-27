@@ -1,10 +1,58 @@
 hyperion_talker.py: test hyperion data process and publish program and annotation removal
 
-hyperion_talker.cpp: catkin_make include dir problem
 
-galil_command.py: 1. confirm all values in G command;
-                  2. convert position values to degrees
-                  3. setup software limits?
-  -> galil_overall_listener.py: test and annotation removal
+This file is for anyone who takes over this project.
+It lists all TODO I can think of before completing this project.
+See readme.md first to get an overall glance of this project.
 
-omni_state.cpp: confirm axis of three velocities published
+
+undone and unclear:
+  1. software limits
+  2. ROS node frequency
+
+
+ALL:
+  1. consider cpp version for better performance.
+
+
+src/UI.py: is user interface developed under PyQt5, and is still just a basic framework.
+
+
+eye_op_common package:
+  1. revise .launch file when needed.
+
+
+eye_robotics_2 package:
+  1. joint_state_pub.py
+    simulation given v_x in coordinate system6 is not producing the right result while controling RCM mechanism.
+    - If you end up revising eye_op_jacobian.py to solve the problem, remember to replace files of same name in other packages.
+
+
+galil_mixed package:
+  galil_overall_listener.py:
+    1. transform from omni velocity to joint velocity;
+    2. test galil connection and command execution;
+      - uncomment while testing.
+  galil_command.py:
+    1. confirm axis number of last three joints in 'TP' command;
+    2. convert return value of 'TP' command to degree;
+    3. convert cts/s to angle acceleration in 'AC' 'DC' commands;
+    4. omni_vel.convert_to_CoordinateSystem6
+
+omni_packages folder:
+  1. You will have to look through 'omni_state.cpp' to understand what topics and contents it is publishing.
+  2. test and figure out what coordinate system does 'omni_state.msg.velocity' refer;
+    - implement coordinate transfer in all places that need this velocity info;
+
+
+yamaha package:
+  1. yamaha_listener.py:
+    test if serial works fine (message transmission, non-blocking after long-time working);
+    transform angles to pulses for robot control;
+    velocity transform to joint vel && joint vel to pulses.
+  2. yamaha_serial.py:
+    test if commands are in right format;
+    add any necessary commands according to RCX240 programming manual;
+    decide an ideal working frequency - SCARA can complete the increment within one loop;
+    - ideally, we can use 'WHERE' command to retrieve values of all joints from SCARA for jacobian calculation.
+    - However, it takes too long to read serial so we assume SCARA completes all our increment command perfectly.

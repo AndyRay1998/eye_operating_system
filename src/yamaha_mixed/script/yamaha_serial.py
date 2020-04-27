@@ -18,7 +18,7 @@ class command():
         self.ser = serial.Serial()
 
 
-    def connect():
+    def connect(self):
         '''
         connect to yamaha through serial property
         '''
@@ -33,14 +33,14 @@ class command():
             sys.exit()
 
 
-    def where():
+    def where(self):
         '''
         request current location of six axis in a tuple
         '''
         self.ser.write("@?WHERE[cr/lf]")
 
 
-    def jog(axis, direction):
+    def jog(self, axis, direction):
         '''
         request jog motion of specific axis in main group
         @param:
@@ -52,7 +52,7 @@ class command():
         self.ser.write(f"@?JOG {a[axis-1]}{direction}[cr/lf]")
 
 
-    def servo():
+    def servo(self):
         '''
         request servo status
         response: OFF,xxxxxxxx [cr/lf] or ON,xxxxxxxx[cr/lf]
@@ -65,7 +65,7 @@ class command():
         self.ser.write(f"@?SERVO[cr/lf]")
 
 
-    def servo_set(status, *axis):
+    def servo_set(self, status, *axis):
         '''
         servo status setup
         @params:
@@ -84,7 +84,7 @@ class command():
         self.ser.write(f"@SERVO {status}{axis}[cr/lf]")
 
 
-    def move(loc, mode='P', speed=100):
+    def move(self, loc, mode='P', speed=100):
         '''
         command movement to absolute location
         loc unit: pulse
@@ -99,7 +99,7 @@ class command():
         self.ser.write(f"@MOVE {mode},{loc[0]} {loc[1]} {loc[2]} {loc[3]} {loc[4]} {loc[5]}[cr/lf],S={speed}")
 
 
-    def movei(incre, speed=100):
+    def movei(self, incre, speed=100):
         '''
         Performs relative movement of all robot axes
         incer unit: pulse
@@ -111,7 +111,7 @@ class command():
         self.ser.write(f"@MOVE P,{loc[0]} {loc[1]} {loc[2]} {loc[3]} {loc[4]} {loc[5]}[cr/lf],S={speed}")
 
 
-    def interrupt():
+    def interrupt(self):
         '''
         Interrupts execution of the current command.
         '''
