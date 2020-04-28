@@ -6,7 +6,7 @@
 We need to share parameter serial.Serial, and contain different functions /
 for different motion, so I decide to implement OOP-style
 '''
-
+import sys
 import serial
 
 class command():
@@ -25,11 +25,11 @@ class command():
         try:
             self.ser=serial.Serial(self.port, self.freq, timeout=self.timeout)
             # green output
-            print("\033[1;31;45m[INFO] Serial connected\033[0m")
+            print("\033[1;32;42m[INFO] Serial connected\033[0m")
 
         except:
             #red output
-            print("\033[1;32;42m[WARN] Yamaha connection failed!\033[0m")
+            print("\033[1;31;45m[WARN] Yamaha connection failed!\033[0m")
             sys.exit()
 
 

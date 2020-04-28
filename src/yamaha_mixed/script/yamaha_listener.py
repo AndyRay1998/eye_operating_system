@@ -32,6 +32,7 @@ def yamaha_listener():
     timeout = rospy.get_param("~Yamaha_timeout")
 
     # TODO: yamaha connect and data transmission
+    # init an instance of yamaha class
     yamaha = command(address, freq, timeout)
     # yamaha.connect()
 

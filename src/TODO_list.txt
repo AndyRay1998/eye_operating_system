@@ -6,9 +6,10 @@ It lists all TODO I can think of before completing this project.
 See readme.md first to get an overall glance of this project.
 
 
-undone and unclear:
+undone and unsure:
   1. software limits
   2. ROS node frequency
+  3. auto installation bash: env.sh
 
 
 ALL:
@@ -54,5 +55,5 @@ yamaha package:
     test if commands are in right format;
     add any necessary commands according to RCX240 programming manual;
     decide an ideal working frequency - SCARA can complete the increment within one loop;
-    - ideally, we can use 'WHERE' command to retrieve values of all joints from SCARA for jacobian calculation.
+    - Ideally, we can use 'WHERE' command to retrieve values of all joints from SCARA for jacobian calculation.
     - However, it takes too long to read serial so we assume SCARA completes all our increment command perfectly.

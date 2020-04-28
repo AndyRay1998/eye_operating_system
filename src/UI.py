@@ -3,6 +3,8 @@
 
 import sys
 import os
+import threading
+import time
 import subprocess
 
 import libtmux # reference: https://github.com/tmux-python/libtmux/
@@ -20,9 +22,11 @@ class tab1UI(QTabWidget):
     def __init__(self):
         # init of parent class
         super().__init__()
-        self.test = 1
+
         # tmux related
+        # init a tmux instance
         self.tmux_server = libtmux.Server()
+        # avoid namesake conflict
         try:
             self.main_sess = self.tmux_server.new_session("main_sess")
         except:
@@ -30,55 +34,126 @@ class tab1UI(QTabWidget):
             self.main_sess = self.tmux_server.new_session("main_sess")
         # create a window
         self.main_win_1 = self.main_sess.new_window(attach=False, window_name="main_win_1")
+        # split two panes
         self.main_pane_1 = self.main_win_1.split_window(attach=False)
         # choose the first pane
         self.main_pane_1 = self.main_win_1.panes[0]
 
         # button
-        self.sButton = QPushButton("Start")
+        self.sButton = QPushButton("Start all nodes")
+        self.sButton.setToolTip("Start all nodes")
         self.eButton = QPushButton("End")
         self.qButton = QPushButton("quit")
         self.eButton.setEnabled(False)
 
+        # device name labels
+        self.gLabel = QLabel('galil')
+        self.hLabel = QLabel('hyperion')
+        self.oLabel = QLabel('omni')
+        self.yLabel = QLabel('yamaha')
+        # state label: ON / OFF
+        self.gsLabel = QLabel('OFF')
+        self.hsLabel = QLabel('OFF')
+        self.osLabel = QLabel('OFF')
+        self.ysLabel = QLabel('OFF')
+
+        # grid layout
+        self.grid = QGridLayout()
+
         # layout
         self.hbox = QHBoxLayout()
         self.vbox = QVBoxLayout()
+
+        self.sButton = QPushButton("Start")
+        self.eButton = QPushButton("End")
+        self.eButton.setEnabled(False)
 
         # UI plotting
         self.initUI()
 
 
     def initUI(self):
-        # button
+        ## button event
         self.sButton.clicked.connect(self.start_click)
         self.eButton.clicked.connect(self.end_click)
         self.qButton.clicked.connect(self.closeEvent)
 
-        # vbox and hbox layout
+        ## vbox and hbox layout
         self.hbox.addStretch(1)
         self.hbox.addWidget(self.sButton)
         self.hbox.addWidget(self.eButton)
         self.hbox.addWidget(self.qButton)
         self.vbox.addStretch(1)
         self.vbox.addLayout(self.hbox)
-        # setup
-        self.setLayout(self.vbox)
+
+        ## grid layout
+        self.grid.setSpacing(10)
+        # add labels
+        self.grid.addWidget(self.gLabel, 2, 0)
+        self.grid.addWidget(self.hLabel, 3, 0)
+        self.grid.addWidget(self.oLabel, 4, 0)
+        self.grid.addWidget(self.yLabel, 5, 0)
+        self.grid.addWidget(self.gsLabel, 2, 1)
+        self.grid.addWidget(self.hsLabel, 3, 1)
+        self.grid.addWidget(self.osLabel, 4, 1)
+        self.grid.addWidget(self.ysLabel, 5, 1)
+
+        self.grid.addLayout(self.vbox, 7, 3)
+        # holistically setup
+        self.setLayout(self.grid)
 
 
-    def start_click(self):
+    def state_monitor_thread(self):
+        '''
+        While starting operating, begin state monitor in another thread.
+        This will update state labels of all devices.
+        '''
+        time.sleep(1) # wait for eButton state to be changed
+        while True:
+            # see active ROS nodes
+            nodes = subprocess.getoutput("rosnode list")
+            if(self.eButton.isEnabled()==True):
+                # update nodes' state
+                if('Galil' in nodes): self.gsLabel.setText('ON')
+                else: self.gsLabel.setText('OFF')
+                if('Hyperion' in nodes): self.hsLabel.setText('ON')
+                else: self.hsLabel.setText('OFF')
+                if('Omni' in nodes): self.osLabel.setText('ON')
+                else: self.osLabel.setText('OFF')
+                if('Yamaha' in nodes): self.ysLabel.setText('ON')
+                else: self.ysLabel.setText('OFF')
+            else:
+                # stop thread when all nodes are off
+                if('Galil' in nodes or 'Hyperion' in nodes or 'Omni' in nodes or 'Yamaha' in nodes):
+                    pass
+                else:
+                    self.gsLabel.setText('OFF')
+                    self.hsLabel.setText('OFF')
+                    self.osLabel.setText('OFF')
+                    self.ysLabel.setText('OFF')
+                    break
+
+
+    def start_click_thread(self):
         self.sButton.setEnabled(False)
         self.eButton.setEnabled(True)
         self.main_pane_1.send_keys('roslaunch eye_op_common eye_op_robot.launch')
         self.main_pane_1 = self.main_win_1.panes[1]
         self.main_pane_1.send_keys('rqt_graph')
-        '''
-        while(self.eButton.isEnable()==True):
-            self.main_pane_1 = self.main_win_1.panes[1]
-            self.main_pane_1.send_keys('rostopic list')
-        '''
+
+
+    def start_click(self):
+        thread_1 = threading.Thread(target=self.state_monitor_thread)
+        thread_2 = threading.Thread(target=self.start_click_thread)
+        # start thread; do not change starting sequence!!
+        thread_2.start()
+        thread_1.start()
+
 
     def end_click(self):
-        self.test = 0
+        '''
+        When trying to exit, reinit tmux windows and change button state.
+        '''
         self.sButton.setEnabled(True)
         self.eButton.setEnabled(False)
         try:
@@ -119,22 +194,69 @@ class tab2UI(QTabWidget):
         self.hbox = QHBoxLayout()
         self.vbox = QVBoxLayout()
 
+        # device name labels
+        self.gLabel = QLabel('galil')
+        self.hLabel = QLabel('hyperion')
+        self.oLabel = QLabel('omni')
+        self.yLabel = QLabel('yamaha')
+        # state label: ON / OFF
+        self.gsLabel = QLabel('OFF')
+        self.hsLabel = QLabel('OFF')
+        self.osLabel = QLabel('OFF')
+        self.ysLabel = QLabel('OFF')
+
+        # device name labels
+        self.gLabel = QLabel('galil')
+        self.hLabel = QLabel('hyperion')
+        self.oLabel = QLabel('omni')
+        self.yLabel = QLabel('yamaha')
+
+        # grid layout
+        self.grid = QGridLayout()
+
         self.initUI()
+
 
     def initUI(self):
         self.sButton.clicked.connect(self.start_click)
         self.eButton.clicked.connect(self.end_click)
+        # connect and disconnect
+        self.gButton = QPushButton("connect galil") # galil connect
+        self.hButton = QPushButton("connect hyperion") # hyperion connect
+        self.oButton = QPushButton("connect omni") # omni connect
+        self.yButton = QPushButton("connect yamaha") # yamaha connect
+        self.gButton.clicked.connect(lambda:self.connect_click("g"))
+        self.hButton.clicked.connect(lambda:self.connect_click("h"))
+        self.oButton.clicked.connect(lambda:self.connect_click("o"))
+        self.yButton.clicked.connect(lambda:self.connect_click("y"))
 
         # vbox and hbox layout
         self.hbox.addStretch(1)
         self.hbox.addWidget(self.sButton)
         self.hbox.addWidget(self.eButton)
-
-
         self.vbox.addStretch(1)
         self.vbox.addLayout(self.hbox)
 
-        self.setLayout(self.vbox)
+        ## grid layout
+        self.grid.setSpacing(10)
+        # add labels
+        self.grid.addWidget(self.gLabel, 2, 0)
+        self.grid.addWidget(self.hLabel, 3, 0)
+        self.grid.addWidget(self.oLabel, 4, 0)
+        self.grid.addWidget(self.yLabel, 5, 0)
+        self.grid.addWidget(self.gsLabel, 2, 1)
+        self.grid.addWidget(self.hsLabel, 3, 1)
+        self.grid.addWidget(self.osLabel, 4, 1)
+        self.grid.addWidget(self.ysLabel, 5, 1)
+        # add buttons
+        self.grid.addWidget(self.gButton, 2, 2)
+        self.grid.addWidget(self.hButton, 3, 2)
+        self.grid.addWidget(self.oButton, 4, 2)
+        self.grid.addWidget(self.yButton, 5, 2)
+
+        self.grid.addLayout(self.vbox, 6, 3)
+        # holistically setup
+        self.setLayout(self.grid)
 
     def start_click(self):
         self.sButton.setEnabled(False)
@@ -145,6 +267,10 @@ class tab2UI(QTabWidget):
 
         self.sButton.setEnabled(True)
         self.eButton.setEnabled(False)
+
+
+    def connect_click(self, flag):
+        print(flag)
 
 
     def closeEvent(self, event):
@@ -166,7 +292,7 @@ class tab2UI(QTabWidget):
 class tab3UI(QTabWidget):
     def __init__(self):
         super().__init__()
-
+        # general buttons
         self.sButton = QPushButton("Start")
         self.eButton = QPushButton("End")
         self.eButton.setEnabled(False)
@@ -195,9 +321,10 @@ class tab3UI(QTabWidget):
         self.initUI()
 
     def initUI(self):
-        # button event
+        ## button event
         self.sButton.clicked.connect(self.start_click)
         self.eButton.clicked.connect(self.end_click)
+
 
         # vbox and hbox layout
         self.hbox.addStretch(1)
@@ -215,7 +342,7 @@ class tab3UI(QTabWidget):
 
         # grid layout
         self.grid.setSpacing(10)
-
+        # add combo
         self.grid.addWidget(self.combo1, 1, 0)
         self.grid.addWidget(self.cb1, 1, 1)
         self.grid.addWidget(self.combo2, 2, 0)
@@ -233,7 +360,7 @@ class tab3UI(QTabWidget):
         self.grid.addWidget(self.v_zEdit, 5, 1)
         self.grid.addWidget(self.unit_z, 5, 2)
 
-        self.grid.addLayout(self.vbox, 6, 2)
+        self.grid.addLayout(self.vbox, 10, 3)
 
         # holistically setup
         self.setLayout(self.grid)
@@ -255,8 +382,6 @@ class tab3UI(QTabWidget):
         self.sButton.setEnabled(False)
         self.eButton.setEnabled(True)
         self.v_xEdit.setText(self.v_yEdit.text())
-        # self.sub = subprocess.Popen('roslaunch eye_op_common eye_op_robot.launch', shell = True ,bufsize = -1, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-        # os.system("gnome-terminal -x bash -c 'roslaunch eye_op_common eye_op_robot.launch'&");
 
 
     def end_click(self):
