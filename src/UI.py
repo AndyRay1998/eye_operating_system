@@ -471,30 +471,28 @@ class tab2UI(QTabWidget):
                 pass
         # PTP motion
         else:
+            axis = int(flag[-9])
+            param = eval(f'self.d{axis}Edit')
+            try:
+                dis = flag[-1] + param.text()
+            except:
+                # default distance is 5
+                dis = flag[-1] + '5'
+                param.setText('5')
+            dis = int(dis)
             # TODO: uncomment and test
             '''
             # YAMAHA PTP motion
-            if '1' in flag and '+' in flag:
-                self.movei([5,0,0,0,0,0])
-            elif '1' in flag and '-' in flag:
-                self.movei([-5,0,0,0,0,0])
-            if '2' in flag and '+' in flag:
-                self.movei([0,5,0,0,0,0])
-            elif '2' in flag and '-' in flag:
-                self.movei([0,-5,0,0,0,0])
-            if '3' in flag and '+' in flag:
-                self.movei([0,0,5,0,0,0])
-            elif '3' in flag and '-' in flag:
-                self.movei([0,0,-5,0,0,0])
+            if axis==1 or axis==2 or axis==3:
+                dis_list = [0, 0, 0, 0, 0, 0]
+                dis_list[axis-1] = dis
+                print(dis_list)
+
+                self.yamaha.movei(dis_list)
             # galil PTP motion
             else:
-                # judge direction
-                if flag[-1] == '+':
-                    self.galil.iap(dic[int(flag[-9])-3], 5)
-                else:
-                    self.galil.iap(dic[int(flag[-9])-3], -5)
+                self.galil.iap(dic[axis-3], dis)
             '''
-            pass
 
 
     def servo_monitoring(self):
