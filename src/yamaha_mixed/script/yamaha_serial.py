@@ -52,7 +52,7 @@ class command():
         self.ser.write(f"@?JOG {a[axis-1]}{direction}[cr/lf]")
 
 
-    def servo(self):
+    def servo_state(self):
         '''
         request servo status
         response: OFF,xxxxxxxx [cr/lf] or ON,xxxxxxxx[cr/lf]
@@ -108,7 +108,7 @@ class command():
         @params:
             incre: array-like data specifying target increment
         '''
-        self.ser.write(f"@MOVE P,{loc[0]} {loc[1]} {loc[2]} {loc[3]} {loc[4]} {loc[5]}[cr/lf],S={speed}")
+        self.ser.write(f"@MOVEI P,{incre[0]} {incre[1]} {incre[2]} {incre[3]} {incre[4]} {incre[5]}[cr/lf],S={speed}")
 
 
     def interrupt(self):

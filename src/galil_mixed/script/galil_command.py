@@ -3,8 +3,9 @@
 '''
 For better encapsulation and param sharing, I implement OOP-style.
 '''
+import subprocess
 import sys
-sys.path.append(sys.path[0] + '/../src')
+sys.path.append(subprocess.getoutput("rospack find galil_mixed") + '/src')
 import gclib_python.gclib as gclib
 import eye_op_jacobian as jacob
 
@@ -39,10 +40,10 @@ class g_control():
         unit: mm/s
         '''
         # TODO: convert position values to degrees; confirm axis number of last three joints of eye op robot
-        # TP returns value of position encoder in string form
+        # TP returns value of position encoder in string form with unit of 'cts'
         p1 = float(self.g.GCommand('TP A')) # theta3
         p2 = float(self.g.GCommand('TP B')) # theta2
-        p3 = float(self.g.GCommand('TP C')) #
+        p3 = float(self.g.GCommand('TP C')) # d6
         # P.convert_to_degrees()
 
         # TODO: omni_vel.convert_to_CoordinateSystem6
@@ -64,5 +65,45 @@ class g_control():
         self.g.GMotionComplete('ABC')
         # print(' done.')
 
+
     def diconnect(self):
+        '''
+        shut down galil instance
+        '''
         self.g.Gclose()
+
+
+    def motor_off(self, axis):
+        '''
+        Shut down control system, and keep position-monitor on.
+        This is used for manual adjustment of robot, after which use 'SH' to activate servo.
+        Input: A to F
+        '''
+        self.g.GCommand('MO' + axis)
+
+
+    def servo_on(self, axis):
+        '''
+        Activate servo state.
+        This alters coordinate system. Any commends of position must be resent!!!
+        Input: A to F
+        '''
+        self.g.GCommand('SH' + axis)
+
+
+    def ask_servo(self, axis):
+        '''
+        Request servo state
+        Input: A to F
+        return: off -> 0; on -> 1
+        '''
+        self.g.GCommand('_MO' + axis)
+
+    def iap(self, axis, distance=5):
+        '''
+        Independent axis positioning.
+        Input: axis -> A, B, C; distance unit: mm or degree
+        '''
+        # TODO: convert distance to cts unit
+        # distance = convert_to_cts()
+        self.g.GCommand('PR' + axis + "=" + str(distance))
