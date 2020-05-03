@@ -89,9 +89,9 @@ There are five folders inside `src`.
 `galil_mixed` is for Galil motion control card. API locates in `src` and executable scripts are in `script`.  
 `yamaha_mixed` is for Galil motion control card. API locates in `src` and executable scripts are in `script`.  
 `omni_packages` is not a ROS package itself, but those four folders inside it are. `omni_packages` is just for better file structure. And those four packages inside are Omni API that you should have installed following previous instruction.  
-`eye_op_robotics` is mainly for jacobian matrix verification. Read `joint_state_pub.py` carefully for instruction. `display.launch` will evoke rviz and GUI for interaction. `simulation.launch` enables observation of speed control performance.
-`UI.py` plots user interface based on `PyQt5`. It includes five class, which locate in the same path.
-`TODO_list.txt` indicates all to-do business before this project is complete.
+`eye_op_robotics` is mainly for jacobian matrix verification. Read `joint_state_pub.py` carefully for instruction.   `display.launch` will evoke rviz and GUI for interaction. `simulation.launch` enables observation of speed control performance.  
+`UI.py` plots user interface based on `PyQt5`. It includes five class, which locate in the same path.  
+`TODO_list.txt` indicates all to-do business before this project is complete.  
 
 ## License
 This project is released under MIT license.  
