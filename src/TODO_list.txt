@@ -19,6 +19,7 @@ ALL:
 src/UI.py:
   1. It is user interface developed under PyQt5, and is still just a basic framework.
   2. determine servo number of each motor in Robot and revise axis number in tab2UI
+  3. There are a great number of tests remained. Read through the code and complete them one by one.
 
 eye_op_common package:
   1. revise .launch file when needed.

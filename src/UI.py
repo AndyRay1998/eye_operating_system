@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 # coding: utf-8
 
+# NOTE: $ ./UI.py to run this scripy
+
 import sys
 import os
 import threading
@@ -38,25 +40,26 @@ class eye_op_system(QTabWidget, QWidget):
     def __init__(self):
         super().__init__()
 
-        self.initUI() #界面绘制交给InitUi方法
+        self.initUI() # interface plotting
 
 
     def initUI(self):
         #### Tab views and tab UI init ####
         self.tab1 = tab1UI()
-        self.addTab(self.tab1,"Operation Process")
+        self.addTab(self.tab1, "Operation Process")
 
         self.tab2 = tab2UI()
-        self.addTab(self.tab2,"Adjustment and Test")
+        self.addTab(self.tab2, "Adjustment and Test")
 
-        self.tab3 = tab3UI()
-        self.addTab(self.tab3,"Kinematic Simulation")
+        # I dont think this tab is necessary in user interface
+        # self.tab3 = tab3UI()
+        # self.addTab(self.tab3,"Kinematic Simulation")
 
         self.tab4 = tab4UI()
-        self.addTab(self.tab4,"About")
+        self.addTab(self.tab4, "About")
 
         self.tab5 = tab5UI()
-        self.addTab(self.tab5,"Contact")
+        self.addTab(self.tab5, "Contact")
 
         #### main window setting ####
         # window position and size setting
@@ -68,8 +71,15 @@ class eye_op_system(QTabWidget, QWidget):
 
         # window show
         self.show()
+
         thread_tab = threading.Thread(target=self.tab_restrict_thread)
         thread_tab.start()
+
+        # TODO: uncomment and test
+        '''
+        thread_servo = threading.Thread(target=self.servo_monitoring)
+        thread_servo.start()
+        '''
 
 
     def tab_restrict_thread(self):
@@ -85,6 +95,32 @@ class eye_op_system(QTabWidget, QWidget):
                     self.tab2.setEnabled(True)
                 else:
                     self.tab2.setEnabled(False)
+
+
+    def servo_monitoring(self):
+        '''
+        monitor and change servo state indicator
+        '''
+        while True:
+            time.sleep(0.5) # avoid high memory usage
+            if self.tab1.exit_flag==0:
+                # galil request servo state
+                if(self.tab2.galil.ask_servo('A')): self.tab2.ser4Button.setText('Servo ON')
+                else: self.tab2.ser4Button.setText('Servo OFF')
+                if(self.tab2.galil.ask_servo('B')): self.tab2.ser5Button.setText('Servo ON')
+                else: self.tab2.ser4Button.setText('Servo OFF')
+                if(self.tab2.galil.ask_servo('C')): self.tab2.ser6Button.setText('Servo ON')
+                else: self.tab2.ser4Button.setText('Servo OFF')
+                # yamaha request servo state
+                state = self.tab2.yamaha.servo_state()
+                if state[-1]=='1': self.tab2.ser1Button.setText('Servo ON')
+                else: self.tab2.ser1Button.setText('Servo OFF')
+                if state[-2]=='1': self.tab2.ser2Button.setText('Servo ON')
+                else: self.tab2.ser1Button.setText('Servo OFF')
+                if state[-3]=='1': self.tab2.ser3Button.setText('Servo ON')
+                else: self.tab2.ser1Button.setText('Servo OFF')
+            else:
+                break
 
 
     def closeEvent(self, event):

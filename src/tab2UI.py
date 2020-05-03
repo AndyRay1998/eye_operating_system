@@ -201,7 +201,6 @@ class tab2UI(QTabWidget):
         self.grid.addWidget(self.d5Edit, 10, 4)
         self.grid.addWidget(self.d6Edit, 11, 4)
 
-        # self.grid.addLayout(self.vbox, 12, 4)
         # holistically setup
         self.setLayout(self.grid)
 
@@ -224,11 +223,6 @@ class tab2UI(QTabWidget):
         # servo control
         if 'ser' in flag:
             # TODO: uncomment and test
-            '''
-            # monitor and change servo state indicator
-            thread_servo = threading.Thread(target=self.servo_monitoring)
-            thread_servo.start()
-            '''
             # map string to param names
             param = eval(flag)
             if param.isChecked():
@@ -279,46 +273,3 @@ class tab2UI(QTabWidget):
             else:
                 self.galil.iap(dic[axis-3], dis)
             '''
-
-
-    def servo_monitoring(self):
-        while True:
-            if((self.ser1Button.isChecked() or self.ser2Button.isChecked() or
-                self.ser3Button.isChecked() or self.ser4Button.isChecked() or
-                self.ser5Button.isChecked() or self.ser6Button.isChecked())
-                or
-                (self.ser1Button.text()=='Servo ON' or self.ser2Button.text()=='Servo ON' or
-                self.ser3Button.text()=='Servo ON' or self.ser4Button.text()=='Servo ON' or
-                self.ser5Button.text()=='Servo ON' or self.ser6Button.text()=='Servo ON')):
-                # galil request servo state
-                if(self.galil.ask_servo('A')): self.ser4Button.setText('Servo ON')
-                else: self.ser4Button.setText('Servo OFF')
-                if(self.galil.ask_servo('B')): self.ser5Button.setText('Servo ON')
-                else: self.ser4Button.setText('Servo OFF')
-                if(self.galil.ask_servo('C')): self.ser6Button.setText('Servo ON')
-                else: self.ser4Button.setText('Servo OFF')
-                # yamaha request servo state
-                state = self.yamaha.servo_state()
-                if state[-1]=='1': self.ser1Button.setText('Servo ON')
-                else: self.ser1Button.setText('Servo OFF')
-                if state[-2]=='1': self.ser2Button.setText('Servo ON')
-                else: self.ser1Button.setText('Servo OFF')
-                if state[-3]=='1': self.ser3Button.setText('Servo ON')
-                else: self.ser1Button.setText('Servo OFF')
-            else:
-                break
-
-
-    def closeEvent(self, event):
-        '''
-        When user tries to close the window, pop out confirmation message.
-        '''
-        reply = QMessageBox.question(self, 'Message',
-            "Are you sure to quit?", QMessageBox.Yes |
-            QMessageBox.No, QMessageBox.No)
-
-        if reply == QMessageBox.Yes:
-            # quit
-            QCoreApplication.instance().quit()
-        else:
-            event.ignore()
