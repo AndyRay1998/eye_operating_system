@@ -21,27 +21,6 @@ def talker(joint_1, joint_2, joint_3, joint_4, joint_5, joint_6, joint4_2, j5, j
     rospy.init_node('joint_state_publisher')
     rate = rospy.Rate(10) # 10hz
 
-
-    '''
-    During this 10s time delay, you should do the following:
-    roslaunch simulation.launch
-    reference frame -> base_link
-    add -> RobotModel
-    Adjust to a suitable view to observe motion of end effector
-    '''
-    start = time.time()
-    while (time.time()-start < 20):
-        state = JointState()
-        state.header = Header()
-        state.header.stamp = rospy.Time.now()
-        state.name = ['joint_1', 'joint_2', 'joint_3', 'joint_4', 'joint_5', 'joint_6', 'joint4_2']
-        state.position = [0, 0, 0, 0, 0, 0, 0]
-        state.velocity = []
-        state.effort = []
-        state.header.stamp = rospy.Time.now()
-        pub.publish(state)
-        rate.sleep()
-
     while not rospy.is_shutdown():
         start = time.time()
         state = JointState()
@@ -57,7 +36,7 @@ def talker(joint_1, joint_2, joint_3, joint_4, joint_5, joint_6, joint4_2, j5, j
             # control RCM module given velocity in system6
             # map velocity from system6 to system3
             v6 = np.array([[v_x], [v_y], [v_z]])
-            v3 = np.dot(jacob.cal_r_36(joint_4, j5, j6), v6)
+            v3 = np.dot(jacob.cal_r_63(joint_4, j5, j6), v6)
             print(f'speed in 3: {v3}')
             v_x_3 = v3[0][0]
             v_y_3 = v3[1][0]
@@ -80,7 +59,6 @@ def talker(joint_1, joint_2, joint_3, joint_4, joint_5, joint_6, joint4_2, j5, j
 
 
 def speed_control63(v_x, v_y, v_z, j5, j6, joint_4, joint_5, joint_6):
-    # initial state of joint_5 is 90 degrees
     jac_matrix = jacob.cal_jacobian_63(joint_4, j5, j6)
     print(joint_4, j5, j6)
     print(f'jacobian: {jac_matrix}')
@@ -117,7 +95,7 @@ if __name__ == '__main__':
         joint_1 = -25
         joint_2 = 15
         joint_3 = 0
-        joint_4 = 30
+        joint_4 = 10
         joint_5 = 0
         joint_6 = 0
         joint4_2 = 0

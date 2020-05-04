@@ -88,9 +88,9 @@ def cal_jacobian_63(theta3, theta2, d6) -> np.array:
     return jacobian_63
 
 
-def cal_r_36(theta3, theta2, d6) -> np.array:
+def cal_r_63(theta3, theta2, d6) -> np.array:
     '''
-    This function calculate rotation matrix of Coordinate System 3 to 6.
+    This function calculates rotation matrix of Coordinate System 6 to 3.
     This is for velocity transform from end effector to system3.
     unit: degree, mm
     '''
@@ -102,11 +102,11 @@ def cal_r_36(theta3, theta2, d6) -> np.array:
     c2 = np.cos(theta2)
     c3 = np.cos(theta3)
 
-    r_36 = np.array([[-c2*s3, -c3, -s3*s2],
+    r_63 = np.array([[c2*s3, -c3, -s3*s2],
                      [-s2,    0,   -c2],
                      [c3*c2, s3, -c3*s2]])
 
-    return r_36
+    return r_63
 
 
 def cal_end_vel(persai1_dot,
