@@ -10,6 +10,7 @@ undone and unsure:
   1. software limits
   2. ROS node frequency
   3. auto installation bash: env.sh
+  4. motor joint values in start-up
 
 
 ALL:
@@ -25,22 +26,17 @@ eye_op_common package:
   1. revise .launch file when needed.
 
 
-eye_robotics_2 package:
-  1. joint_state_pub.py
-    simulation given v_x in coordinate system6 is not producing the right result while controling RCM mechanism.
-    - If you end up revising eye_op_jacobian.py to solve the problem, remember to replace files of same name in other packages.
-
-
 galil_mixed package:
   galil_overall_listener.py:
     1. transform from omni velocity to joint velocity;
     2. test galil connection and command execution;
       - uncomment while testing.
   galil_command.py:
-    1. confirm axis number of last three joints in 'TP' command;
-    2. convert return value of 'TP' command to degree;
-    3. convert cts/s to angle acceleration in 'AC' 'DC' commands;
-    4. omni_vel.convert_to_CoordinateSystem6
+    1. confirm axis number of last three joints in 'TP' command; default: A, B, C
+    # 2. convert return value of 'TP' command to degree;
+    3. determine acceleration value; convert cts unit to rad unit
+    4. determine speed ratio;
+    5. determine speed in cts unit.
 
 omni_packages folder:
   1. You will have to look through 'omni_state.cpp' to understand what topics and contents it is publishing.

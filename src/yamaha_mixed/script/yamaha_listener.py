@@ -16,7 +16,7 @@ def callback(data):
     v_z = data.velocity.z
     # we will implement increment control
     # TODO: control mode judgement (RCM point && RCM mechanism)
-    # TODO: velocity transform to joint vel; joint vel to pulses
+    # TODO: velocity transform to joint vel;
     ## incre = getVal() -> array-like
     # movei(incre)
 

@@ -34,10 +34,11 @@ class g_control():
 
     def g_jog(self, v1, v2, v3):
         '''
-        function: complete JOG mode motion; used for velocity control
+        function: complete JOG mode motion in cartesian space; used for velocity control
         params: v -> velocities of theta3, theta2, d6
                 g_flag -> flag that avoid repetitive definition of AC, DC
         unit: mm/s
+        '''
         '''
         # TODO: convert position values to degrees; confirm axis number of last three joints of eye op robot
         # TP returns value of position encoder in string form with unit of 'cts'
@@ -45,21 +46,24 @@ class g_control():
         p2 = float(self.g.GCommand('TP B')) # theta2
         p3 = float(self.g.GCommand('TP C')) # d6
         # P.convert_to_degrees()
+        '''
 
-        # TODO: omni_vel.convert_to_CoordinateSystem6
-        jac_matrix = jacob.cal_jacobian_63(p1, p2, p3)
-        # omni_vel.convert_to_CoordinateSystem6
-        ctrl_val = jacob.cal_speed_control(v1, v2, v3, jac_matrix)
-        v1 = ctrl_val[0][0]
-        v2 = ctrl_val[0][1]
-        v3 = ctrl_val[0][2]
+        # TODO: may need a speed ratio; determine that through experiment
+        ratio_x = 1.0
+        ratio_y = 1.0
+        ratio_z = 1.0
+        v1 = v1 * ratio_x
+        v2 = v2 * ratio_y
+        v3 = v3 * ratio_z
+        # TODO： convert velocity to cnt unit
 
         # TODO: confirm all values in the following command
+        # TODO: confirm acis number; default A, B, C
         # motion command sent to galil card
         self.g.GCommand('AC 20000,20000,20000') # acceleration 20000 cts/s^2
         self.g.GCommand('DC 20000,20000,20000') # deceleration 20000 cts/s^2
 
-        self.g.GCommand('JG v1,v2,v3') # JOG motion mode; set velocity
+        self.g.GCommand(f'JG {v1},{v2},{v3}') # JOG motion mode; set velocity
         # print(' Starting move...')
         self.g.GCommand('BG ABC') #begin motion
         self.g.GMotionComplete('ABC')
@@ -107,3 +111,19 @@ class g_control():
         # TODO: convert distance to cts unit
         # distance = convert_to_cts()
         self.g.GCommand('PR' + axis + "=" + str(distance))
+
+
+    def grip(self, state, axis=1):
+        '''
+        control close&open of gripper
+        @params:
+            state -> 0 open; 1 close;
+            axis -> hardware I/O number
+        '''
+        # TODO: determine hardware I/O number and revise axis
+        # set bit high
+        if state == 1:
+            self.g.GCommand('SB' + str(axis))
+        # clear bit to low
+        if state == 0:
+            self.g.GCommand('CB' + str(axis))

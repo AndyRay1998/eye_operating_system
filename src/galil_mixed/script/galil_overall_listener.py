@@ -11,7 +11,7 @@ import gclib_python.gclib as gclib
 from omni_msgs.msg import OmniState
 
 
-def callback(data):
+def callback(data, args):
 
     rospy.loginfo(rospy.get_caller_id() + " python: Galil heard Omni")
 
@@ -21,13 +21,22 @@ def callback(data):
     v2 = data.velocity.y
     v3 = data.velocity.z
 
-    # TODO: velocity transform using jacobian
-    # Galil velocity control
+    # Galil velocity control in joint space
+    # v1 -> theta3, v2 -> theta2, v3 -> d6
     # g.g_jog(v1, v2, v3)
+
+    # detect button change
+    pre_grip = args[0]
+    if data.close_gripper == True and pre_grip == False:
+        grip_count += 1
+    # log previous button state
+    pre_grip = data.close_gripper
+    # TODO: determine hardware I/O number and revise galil_command.py
+    # g.grip(grip_count%2)
 
 
 def galil_listener():
-    rospy.Subscriber("joint_states", OmniState, callback)
+    rospy.Subscriber("joint_states", OmniState, callback, (pre_grip,))
     rospy.spin()
 
 
@@ -41,6 +50,7 @@ if __name__ == '__main__':
     # galil card connection
     g = g_control(galil_address)
     # g.connect()
+    pre_grip = False
 
     # data listening and galil command
     try:
