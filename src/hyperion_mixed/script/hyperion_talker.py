@@ -6,9 +6,10 @@ from std_msgs.msg import Float32MultiArray
 from std_msgs.msg import MultiArrayDimension
 from omni_msgs.msg import OmniFeedback
 import sys
+import subprocess
 
 # add API located in another folder
-sys.path.append(sys.path[0] + '/../src')
+sys.path.append(subprocess.getoutput("rospack find hyperion_mixed") + '/src')
 
 import Hyperion_PY_API.hyperion
 import Hyperion_PY_API.networkconfiguration
@@ -59,34 +60,10 @@ def wavelength_calibrate(address):
     return(ref_wavelen / 20 + 1550)
 
 
-def talker(pub, pub_omni, f_x=0, f_y=0, f_z=0):
+def talker(pub_omni, f_x=0, f_y=0, f_z=0):
 
     while not rospy.is_shutdown():
-
-        # random data for debug and test
-        hyperion_data =  Float32MultiArray()
-        hyperion_data.data = np.random.random((2,3)).astype(np.float32).reshape([6])
-        hyperion_data.layout.data_offset = 0
-        # create two dimensions in the dim array
-        hyperion_data.layout.dim = [MultiArrayDimension(), MultiArrayDimension()]
-        '''
-        The stride in these dimensions refers to how many samples along the next
-        higher dimension is. So in the case of the samples, there is a stride of
-        4096 to the next sample. In the case of dimension zero there is no higher
-        dimension so the stride is the overall size of the message data.
-        '''
-        # dim[0] is the vertical dimension of your matrix
-        hyperion_data.layout.dim[0].label = "vertical"
-        hyperion_data.layout.dim[0].size = 2
-        hyperion_data.layout.dim[0].stride = 3
-        # dim[1] is the horizontal dimension of your matrix
-        hyperion_data.layout.dim[1].label = "horizontal"
-        hyperion_data.layout.dim[1].size = 3
-        hyperion_data.layout.dim[1].stride = 3
-
-        rospy.loginfo("python: hyperion_data sent")
-        pub.publish(hyperion_data)
-
+        # TODO: uncomment for real test
         # f_x = hyperion_force()[0][0]
         # f_y = hyperion_force()[1][0]
         force_data = OmniFeedback()
@@ -98,14 +75,10 @@ def talker(pub, pub_omni, f_x=0, f_y=0, f_z=0):
         # rospy.loginfo(_hyperion_data) # for test only
         pub_omni.publish(force_data)
 
-
         rate.sleep()
 
 
-
-
 if __name__ == '__main__':
-    pub = rospy.Publisher('Hyperion_data', Float32MultiArray, queue_size=10)
     # TODO: test publishing force to omni phantom; OmniFeedback.msg
     pub_omni = rospy.Publisher('phantom/force_feedback', OmniFeedback, queue_size=10)
     rospy.init_node('Hyperion_talker', anonymous=False)
@@ -115,12 +88,13 @@ if __name__ == '__main__':
     current_address = rospy.get_param("~Hyperion_address")
 
     # reference wavelength calibration
+    # TODO: uncomment for real test
     # ref_wavelen = wavelength_calibrate(current_address)
     # TODO: test retrieve and process hyperion data
     # f_x, f_y = hyperion_force(current_address, ref_wavelen)
 
     try:
-        talker(pub, pub_omni)
+        talker(pub_omni)
     except rospy.ROSInterruptException:
         rospy.logerr("hyperion_data error")
         pass

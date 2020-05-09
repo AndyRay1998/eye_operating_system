@@ -15,6 +15,8 @@ class g_control():
         self.ip_address = ip_address
         # make an instance of the gclib python class
         self.g = gclib.py()
+        # for grip close/open
+        self.grip_state = False
 
 
     def connect(self):
@@ -55,10 +57,10 @@ class g_control():
         v1 = v1 * ratio_x
         v2 = v2 * ratio_y
         v3 = v3 * ratio_z
-        # TODO： convert velocity to cnt unit
+        # TODO： convert velocity to cts unit
 
         # TODO: confirm all values in the following command
-        # TODO: confirm acis number; default A, B, C
+        # TODO: confirm axis number; default A, B, C
         # motion command sent to galil card
         self.g.GCommand('AC 20000,20000,20000') # acceleration 20000 cts/s^2
         self.g.GCommand('DC 20000,20000,20000') # deceleration 20000 cts/s^2
@@ -102,6 +104,7 @@ class g_control():
         return: off -> 0; on -> 1
         '''
         self.g.GCommand('_MO' + axis)
+
 
     def iap(self, axis, distance=5):
         '''

@@ -3,6 +3,7 @@
   <arg name="file_suffix" default=".py" />
   <arg name="hyperion_address" default="10.0.10.71" />
   <arg name="galil_address" default="192.168.0.42" />
+  <!-- TODO: confirm yamaha default port-->
   <arg name="yamaha_address" default="" />
   <arg name="yamaha_freq" default="9600" />
   <arg name="yamaha_timeout" default="0.5" />
@@ -27,6 +28,19 @@
   <node name="common_listener" pkg="eye_op_common" type="common_listener.py" output="screen" />
   <node name="common_talker" pkg="eye_op_common" type="common_talker.py" output="screen" />
 
-  <!--node name="test_listener" pkg="eye_op_common" type="test_listener" output="screen" /-->
 
+  <!-- omni API node -->
+  <!-- TODO： uncomment the following and comment 'common_talker' and 'common_listener' for omni test
+  <arg name="reference_frame" default="/map"/>
+  <arg name="units" default="mm"/>
+  <arg name="publish_rate" default="1000"/>
+  <arg name="omni_name" default="phantom"/>
+
+  <node name="omni_state" pkg="omni_common" type="omni_state" output="screen">
+    <param name="omni_name" value="$(arg omni_name)"/>
+    <param name="publish_rate" value="$(arg publish_rate)"/>
+    <param name="reference_frame" value="$(arg reference_frame)"/>
+    <param name="units" value="$(arg units)"/>
+  </node>
+  -->
 </launch>

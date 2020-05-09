@@ -26,7 +26,9 @@ from tab1UI import tab1UI
 from tab2UI import tab2UI
 
 #### class for tab3 ####
-from tab3UI import tab3UI
+# NOTE: tab3 was used for kinematic simulation, but I thought it was unnecessary,
+# so neither do I implement it, nor did I finish tab3UI.py
+# from tab3UI import tab3UI
 
 #### class for tab4 ####
 from tab4UI import tab4UI
@@ -51,7 +53,7 @@ class eye_op_system(QTabWidget, QWidget):
         self.tab2 = tab2UI()
         self.addTab(self.tab2, "Adjustment and Test")
 
-        # I dont think this tab is necessary in user interface
+        # NOTE: I dont think this tab is necessary in user interface
         # self.tab3 = tab3UI()
         # self.addTab(self.tab3,"Kinematic Simulation")
 
@@ -99,7 +101,7 @@ class eye_op_system(QTabWidget, QWidget):
 
     def servo_monitoring(self):
         '''
-        monitor and change servo state indicator
+        monitor and change servo state indicator in tab2
         '''
         while True:
             time.sleep(0.5) # avoid high memory usage
@@ -125,10 +127,12 @@ class eye_op_system(QTabWidget, QWidget):
 
     def closeEvent(self, event):
         '''
+        Rewrite closeEvent method.
         When user tries to close the window, pop out confirmation message.
         '''
         # cannot quit while devices are under operation
         if self.tab1.eButton.isEnabled():
+            event.ignore()
             QMessageBox.warning(self, 'Warning',
                 "Devices are operating. Please end first!")
         else:

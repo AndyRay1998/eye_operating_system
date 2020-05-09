@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 
 # Reference: https://www.cnblogs.com/dongxiaodong/p/9992083.html
-
+# Reference: ../RCX2 programming manual.pdf
 '''
-We need to share parameter serial.Serial, and contain different functions /
+We need to share parameter serial.Serial(), and contain different functions /
 for different motion, so I decide to implement OOP-style
 '''
 import sys

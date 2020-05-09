@@ -1,6 +1,0 @@
-<launch>
-  <!-- for unit test only; delete before publishing. -->
-  <node name="common_listener" pkg="eye_op_common" type="common_listener.py" output="screen" />
-  <node name="common_talker" pkg="eye_op_common" type="common_talker.py" output="screen" />
-
-</launch>

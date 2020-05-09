@@ -11,7 +11,7 @@ import gclib_python.gclib as gclib
 from omni_msgs.msg import OmniState
 
 
-def callback(data, args):
+def callback(data):
 
     rospy.loginfo(rospy.get_caller_id() + " python: Galil heard Omni")
 
@@ -26,17 +26,16 @@ def callback(data, args):
     # g.g_jog(v1, v2, v3)
 
     # detect button change
-    pre_grip = args[0]
-    if data.close_gripper == True and pre_grip == False:
+    if data.close_gripper == True and g.grip_state == False:
         grip_count += 1
     # log previous button state
-    pre_grip = data.close_gripper
+    g.grip_state = data.close_gripper
     # TODO: determine hardware I/O number and revise galil_command.py
     # g.grip(grip_count%2)
 
 
 def galil_listener():
-    rospy.Subscriber("joint_states", OmniState, callback, (pre_grip,))
+    rospy.Subscriber("joint_states", OmniState, callback)
     rospy.spin()
 
 
@@ -49,8 +48,8 @@ if __name__ == '__main__':
 
     # galil card connection
     g = g_control(galil_address)
+    # TODO: uncomment for real test
     # g.connect()
-    pre_grip = False
 
     # data listening and galil command
     try:
@@ -59,5 +58,6 @@ if __name__ == '__main__':
         pass
     finally:
         # Close galil connection
+        # TODO: uncomment for real test
         # g.disconnect()
         pass

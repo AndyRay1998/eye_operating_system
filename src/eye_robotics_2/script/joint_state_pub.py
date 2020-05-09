@@ -92,6 +92,7 @@ def speed_control30(v_x, v_y, v_z, joint_1, joint_2, joint_3):
 
 if __name__ == '__main__':
     try:
+        # initial offset of joints can be set here
         joint_1 = -25
         joint_2 = 15
         joint_3 = 0

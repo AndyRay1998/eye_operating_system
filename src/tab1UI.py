@@ -110,7 +110,7 @@ class tab1UI(QTabWidget):
         While starting operating, begin state monitor in another thread.
         This will update state labels of all devices.
         '''
-        time.sleep(1) # wait for eButton state to be changed
+        time.sleep(0.1) # wait for eButton state to be changed
         while True:
             # see active ROS nodes
             nodes = subprocess.getoutput("rosnode list")
@@ -139,6 +139,7 @@ class tab1UI(QTabWidget):
     def start_click_thread(self):
         self.sButton.setEnabled(False)
         self.eButton.setEnabled(True)
+        # send terminal command
         self.main_pane_1.send_keys('roslaunch eye_op_common eye_op_robot.launch')
         self.main_pane_1 = self.main_win_1.panes[1]
         self.main_pane_1.send_keys('rqt_graph')
@@ -154,7 +155,7 @@ class tab1UI(QTabWidget):
 
     def end_click(self):
         '''
-        When trying to exit, reinit tmux windows and change button state.
+        When trying to end, reinit tmux windows and change button state.
         '''
         try:
             self.main_sess.kill_window(1)
@@ -176,6 +177,7 @@ class tab1UI(QTabWidget):
         '''
         # cannot quit while devices are under operation
         if self.eButton.isEnabled():
+            event.ignore()
             QMessageBox.warning(self, 'Warning',
                 "Devices are operating. Please end first!")
         else:

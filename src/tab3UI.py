@@ -113,9 +113,5 @@ class tab3UI(QTabWidget):
 
 
     def end_click(self):
-        # os.system("gnome-terminal -x bash -c '^C'&");
-        # TODO: not cleanly
-        # os.kill(sub.pid, signal.SIGINT)
-        # print('killed')
         self.sButton.setEnabled(True)
         self.eButton.setEnabled(False)

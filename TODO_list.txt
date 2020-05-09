@@ -22,21 +22,23 @@ src/UI.py:
   2. determine servo number of each motor in Robot and revise axis number in tab2UI
   3. There are a great number of tests remained. Read through the code and complete them one by one.
 
+
 eye_op_common package:
-  1. revise .launch file when needed.
+  1. Confirm yamaha default port;
+  2. Omni test.
 
 
 galil_mixed package:
   galil_overall_listener.py:
-    1. transform from omni velocity to joint velocity;
-    2. test galil connection and command execution;
-      - uncomment while testing.
+    1. test galil connection and command execution.
   galil_command.py:
     1. confirm axis number of last three joints in 'TP' command; default: A, B, C
     # 2. convert return value of 'TP' command to degree;
     3. determine acceleration value; convert cts unit to rad unit
     4. determine speed ratio;
-    5. determine speed in cts unit.
+    5. determine speed in cts unit;
+    6. determine hardware I/O number of grip and revise grip().
+
 
 omni_packages folder:
   1. You will have to look through 'omni_state.cpp' to understand what topics and contents it is publishing.

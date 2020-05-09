@@ -20,22 +20,20 @@ from PyQt5.QtWidgets import *
 class tab2UI(QTabWidget):
     def __init__(self):
         super().__init__()
-        # use 'src' as project source path
-        self.src_path = subprocess.getoutput("rospack find eye_op_common") + "/.."
         # create yamaha instance for sending command
-        sys.path.append(self.src_path + "/yamaha_mixed/script")
+        sys.path.append(subprocess.getoutput("rospack find yamaha_mixed") + "/script")
         from yamaha_serial import command
-        # TODO: confirm port number of YAMAHA
         # here we assign port to "" just for null initialization; do not change it here!!!
         self.yamaha = command(port="")
+        # TODO: confirm port number of YAMAHA
         self.yamaha_port = "TODO"
 
         # create galil instance for sending command
-        sys.path.append(self.src_path + "/galil_mixed/script")
+        sys.path.append(subprocess.getoutput("rospack find galil_mixed") + "/script")
         from galil_command import g_control
-        # TODO: confirm ip of GALIL
         # here we assign port to "" just for null initialization; do not change it here!!!
         self.galil = g_control(ip_address="")
+        # TODO: confirm ip of GALIL
         self.galil_ip = "TODO"
 
         # device connect and disconnect
@@ -113,7 +111,7 @@ class tab2UI(QTabWidget):
         self.jo5mButton = QPushButton("JOG -")
         self.jo6pButton = QPushButton("JOG +")
         self.jo6mButton = QPushButton("JOG -")
-        # button event
+        # button event: click evoke
         self.jo1pButton.clicked.connect(lambda:self.jog_click("self.jo1pButton+"))
         self.jo1mButton.clicked.connect(lambda:self.jog_click("self.jo1mButton-"))
         self.jo2pButton.clicked.connect(lambda:self.jog_click("self.jo2pButton+"))
@@ -148,14 +146,6 @@ class tab2UI(QTabWidget):
 
 
     def initUI(self):
-        '''
-        # vbox and hbox layout
-        self.hbox.addStretch(1)
-        self.hbox.addWidget(self.sButton)
-        self.hbox.addWidget(self.eButton)
-        self.vbox.addStretch(1)
-        self.vbox.addLayout(self.hbox)
-        '''
 
         ## grid layout
         self.grid.setSpacing(10)
@@ -220,17 +210,17 @@ class tab2UI(QTabWidget):
         # assuming using A,B,C axis in galil
         # TODO: confirm axis used in galil device
         dic = {1:'A', 2:'B', 3:'C'}
+
         # servo control
         if 'ser' in flag:
             # TODO: uncomment and test
             # map string to param names
             param = eval(flag)
             if param.isChecked():
-                # param.setText("SERVO ON")
-                # TODO: determine what kind of status to be used
+                # TODO: determine what kind of status to be used /
+                # go check yamaha programming manual
                 servo_status = "ON"
             else:
-                # param.setText("SERVO OFF")
                 servo_status = "OFF"
             ## YAMAHA servo control
             if '1' in flag or '2' in flag or '3' in flag:
@@ -260,6 +250,9 @@ class tab2UI(QTabWidget):
                 dis = flag[-1] + '5'
                 param.setText('5')
             dis = int(dis)
+            # TODO: convert all control value(dis) to cts unit
+            # dis.convert_to_cts()
+
             # TODO: uncomment and test
             '''
             # YAMAHA PTP motion
