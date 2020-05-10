@@ -2,7 +2,7 @@
 '''
 This script is for jacobian verification through rviz simulation.
 Check the picture in eye_robotics_2 to see coordinate systems of this robot.
-Launch display.launchto see configuration of each joint.
+Launch display.launch to see configuration of each joint.
 Revice v_x, v_y, v_z and roslaunch simulation.launch file.
 No software position limit is inplemented, so when approaching sigularity, /
 simulation becomes strange; we do not have that affliction in real life though.
@@ -16,7 +16,7 @@ import time
 import eye_op_jacobian as jacob
 
 # v_x, v_y, v_z are velocities in coordinate system3
-def talker(joint_1, joint_2, joint_3, joint_4, joint_5, joint_6, joint4_2, j5, j6, v_x=5, v_y=0, v_z=0):
+def talker(joint_1, joint_2, joint_3, joint_4, joint_5, joint_6, joint4_2, j5, j6, v_x=0, v_y=6, v_z=0):
     pub = rospy.Publisher('joint_states', JointState, queue_size=10)
     rospy.init_node('joint_state_publisher')
     rate = rospy.Rate(10) # 10hz
@@ -32,7 +32,7 @@ def talker(joint_1, joint_2, joint_3, joint_4, joint_5, joint_6, joint4_2, j5, j
         state.velocity = []
         state.effort = []
 
-        if 1:
+        if 0:
             # control RCM module given velocity in system6
             # map velocity from system6 to system3
             v6 = np.array([[v_x], [v_y], [v_z]])
@@ -48,7 +48,7 @@ def talker(joint_1, joint_2, joint_3, joint_4, joint_5, joint_6, joint4_2, j5, j
             # control RCM point given velocity in base system
             joint_1, joint_2, joint_3 = speed_control30(v_x, v_y, v_z, joint_1, joint_2, joint_3)
 
-        if 0:
+        if 1:
             # control RCM module given velocity in system3
             joint_4, joint_5, joint_6, j5, j6 = speed_control63(v_x, v_y, v_z, j5, j6, joint_4, joint_5, joint_6)
 
@@ -93,8 +93,8 @@ def speed_control30(v_x, v_y, v_z, joint_1, joint_2, joint_3):
 if __name__ == '__main__':
     try:
         # initial offset of joints can be set here
-        joint_1 = -25
-        joint_2 = 15
+        joint_1 = -89
+        joint_2 = 89
         joint_3 = 0
         joint_4 = 10
         joint_5 = 0

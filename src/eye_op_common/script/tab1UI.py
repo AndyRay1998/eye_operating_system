@@ -177,7 +177,6 @@ class tab1UI(QTabWidget):
         '''
         # cannot quit while devices are under operation
         if self.eButton.isEnabled():
-            event.ignore()
             QMessageBox.warning(self, 'Warning',
                 "Devices are operating. Please end first!")
         else:

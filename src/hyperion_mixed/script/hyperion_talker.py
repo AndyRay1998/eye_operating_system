@@ -22,7 +22,7 @@ def hyperion_force(address, ref_wavelen):
     Calculation detail is from a Chinese essay located in "/hyperion_mixed"
     '''
     try:
-        # Connection of hyperion device (we may not need this)
+        # network configuration of hyperion device (we may not need this)
         # networkconfiguration.hyperion_connect_config(current_address)
 
         # TODO: real test
@@ -60,16 +60,17 @@ def wavelength_calibrate(address):
     return(ref_wavelen / 20 + 1550)
 
 
-def talker(pub_omni, f_x=0, f_y=0, f_z=0):
+def talker(pub_omni):
 
     while not rospy.is_shutdown():
         # TODO: uncomment for real test
-        # f_x = hyperion_force()[0][0]
-        # f_y = hyperion_force()[1][0]
+        # f = hyperion_force()
+        # f_x = f[0][0]
+        # f_y = f[1][0]
         force_data = OmniFeedback()
-        force_data.force.x = f_x
-        force_data.force.y = f_y
-        force_data.force.z = f_z
+        # force_data.force.x = f_x
+        # force_data.force.y = f_y
+        force_data.force.z = 0
 
         rospy.loginfo("python: force_feedback_data sent")
         # rospy.loginfo(_hyperion_data) # for test only

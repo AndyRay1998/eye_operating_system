@@ -6,7 +6,9 @@ import numpy as np
 
 
 def inv_kine_36(Px, Py, Pz, L=406, l1=70, L_=66.000004):
-
+    '''
+    Given position of RCM point in coordinate system3 and control joint4, 5, 6
+    '''
     # theta2 = (0, 180)
     theta2 = np.arctan(-np.sqrt(Px**2 + Pz**2) / (Py - L))
     if (theta2 < 0):
@@ -47,6 +49,7 @@ def inv_kine_36(Px, Py, Pz, L=406, l1=70, L_=66.000004):
 
     return theta3, l2, d5
 
+
 # For verification only
 '''
 #                     persai1,      persai2,    theta3,       d3,         d5,        d,         d6
@@ -66,7 +69,9 @@ inv_result = np.array([[538.424515, 420.096537, 353.053352, 3.629233,   407.9413
 
 
 def inv_kine_03(Px, Py, Pz, a1=200., a2=86.5, d1=242.8, d2=30.3, L=406.0):
-
+    '''
+    Given position in coordinate system0 and control joint4, 5, 6
+    '''
     d3 = Pz - d1 - d2
     print(f"d3: {d3}")
 

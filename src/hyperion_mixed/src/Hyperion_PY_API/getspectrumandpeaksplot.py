@@ -1,18 +1,6 @@
 #! /usr/bin/env python3
-#
-# getspectrumandpeaksplot.py
-#
-# Copyright (c) 2018 by Micron Optics, Inc.  All Rights Reserved
-#
 
-# import matplotlib
-# matplotlib.use('tkagg') # agg set to enable plotting in tkinter
 import numpy as np
-# import matplotlib.pyplot as plt
-# from scipy.interpolate import interp1d
-
-import sys
-
 from . import hyperion
 
 def getpeaks(current_address='10.0.10.71', ref_wavelen = 1550) -> np.array:
@@ -38,16 +26,6 @@ def getpeaks(current_address='10.0.10.71', ref_wavelen = 1550) -> np.array:
     interpSpectrum3 = interp1d(wavelengths, spectrum[2])
     wavelength3 = peaks[2][np.where((interpSpectrum3(peaks[2])))[0][0]]
 
-    '''
-    #We will interpolate the peak data so that the indicators appear on the
-    #plot in line with the spectrum.
-    interpSpectrum = interp1d(wavelengths, spectrum)
-
-    plt.plot(wavelengths, spectrum ,peaks,interpSpectrum(peaks),'o') # last two params plot points
-    plt.xlabel('Wavelength (nm)')
-    plt.ylabel('Amplitude (dBm)')
-    plt.show()
-    '''
     # calculate difference: use -= to decrease memory usage
     wavelength1 -= ref_wavelen
     wavelength2 -= ref_wavelen

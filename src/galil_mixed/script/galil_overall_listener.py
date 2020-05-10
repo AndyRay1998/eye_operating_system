@@ -3,10 +3,6 @@
 
 import rospy
 from galil_command import g_control
-# galil API
-import sys
-sys.path.append(sys.path[0] + '/../src')
-import gclib_python.gclib as gclib
 # use omni customed message type
 from omni_msgs.msg import OmniState
 
@@ -21,6 +17,7 @@ def callback(data):
     v2 = data.velocity.y
     v3 = data.velocity.z
 
+    # TODO: uncomment and test
     # Galil velocity control in joint space
     # v1 -> theta3, v2 -> theta2, v3 -> d6
     # g.g_jog(v1, v2, v3)
@@ -28,7 +25,7 @@ def callback(data):
     # detect button change
     if data.close_gripper == True and g.grip_state == False:
         grip_count += 1
-    # log previous button state
+    # record previous button state
     g.grip_state = data.close_gripper
     # TODO: determine hardware I/O number and revise galil_command.py
     # g.grip(grip_count%2)
