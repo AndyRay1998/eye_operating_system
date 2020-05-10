@@ -72,7 +72,7 @@ class g_control():
         # print(' done.')
 
 
-    def diconnect(self):
+    def disconnect(self):
         '''
         shut down galil instance
         '''
@@ -109,11 +109,27 @@ class g_control():
     def iap(self, axis, distance=5):
         '''
         Independent axis positioning.
-        Input: axis -> A, B, C; distance unit: mm or degree
+        @params:
+            axis -> A, B, C;
+            distance unit: mm or degree
+            distance: relative distance in cts
         '''
         # TODO: convert distance to cts unit
         # distance = convert_to_cts()
         self.g.GCommand('PR' + axis + "=" + str(distance))
+
+
+    def iap_a(self, axis='D', position=5):
+        '''
+        Independent axis positioning.
+        @params:
+            axis -> A, B, C;
+            distance unit: mm or degree
+            position: absolute position in cts
+        '''
+        # TODO: convert distance to cts unit
+        # distance = convert_to_cts()
+        self.g.GCommand('PA' + axis + "=" + str(position))
 
 
     def grip(self, state, axis=1):

@@ -116,3 +116,10 @@ class command():
         Interrupts execution of the current command.
         '''
         self.ser.write(f"^C")
+
+
+    def ser_close(self):
+        '''
+        close serial transmission
+        '''
+        self.ser.close()

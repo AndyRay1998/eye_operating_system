@@ -89,28 +89,6 @@ rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
 
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
-
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
-
-# Special rule for the target test
-test/fast: test
-
-.PHONY : test/fast
-
 # Special rule for the target install/strip
 install/strip: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
@@ -132,6 +110,28 @@ install/local: preinstall
 install/local/fast: install/local
 
 .PHONY : install/local/fast
+
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+
+.PHONY : test/fast
+
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -165,48 +165,6 @@ depend:
 	cd /home/andy/eye_op_robot_mixed/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
-# Convenience name for target.
-yamaha_mixed/CMakeFiles/yamaha_listener.dir/rule:
-	cd /home/andy/eye_op_robot_mixed/build && $(MAKE) -f CMakeFiles/Makefile2 yamaha_mixed/CMakeFiles/yamaha_listener.dir/rule
-.PHONY : yamaha_mixed/CMakeFiles/yamaha_listener.dir/rule
-
-# Convenience name for target.
-yamaha_listener: yamaha_mixed/CMakeFiles/yamaha_listener.dir/rule
-
-.PHONY : yamaha_listener
-
-# fast build rule for target.
-yamaha_listener/fast:
-	cd /home/andy/eye_op_robot_mixed/build && $(MAKE) -f yamaha_mixed/CMakeFiles/yamaha_listener.dir/build.make yamaha_mixed/CMakeFiles/yamaha_listener.dir/build
-.PHONY : yamaha_listener/fast
-
-script/yamaha_listener.o: script/yamaha_listener.cpp.o
-
-.PHONY : script/yamaha_listener.o
-
-# target to build an object file
-script/yamaha_listener.cpp.o:
-	cd /home/andy/eye_op_robot_mixed/build && $(MAKE) -f yamaha_mixed/CMakeFiles/yamaha_listener.dir/build.make yamaha_mixed/CMakeFiles/yamaha_listener.dir/script/yamaha_listener.cpp.o
-.PHONY : script/yamaha_listener.cpp.o
-
-script/yamaha_listener.i: script/yamaha_listener.cpp.i
-
-.PHONY : script/yamaha_listener.i
-
-# target to preprocess a source file
-script/yamaha_listener.cpp.i:
-	cd /home/andy/eye_op_robot_mixed/build && $(MAKE) -f yamaha_mixed/CMakeFiles/yamaha_listener.dir/build.make yamaha_mixed/CMakeFiles/yamaha_listener.dir/script/yamaha_listener.cpp.i
-.PHONY : script/yamaha_listener.cpp.i
-
-script/yamaha_listener.s: script/yamaha_listener.cpp.s
-
-.PHONY : script/yamaha_listener.s
-
-# target to generate assembly for a file
-script/yamaha_listener.cpp.s:
-	cd /home/andy/eye_op_robot_mixed/build && $(MAKE) -f yamaha_mixed/CMakeFiles/yamaha_listener.dir/build.make yamaha_mixed/CMakeFiles/yamaha_listener.dir/script/yamaha_listener.cpp.s
-.PHONY : script/yamaha_listener.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -216,14 +174,10 @@ help:
 	@echo "... list_install_components"
 	@echo "... install"
 	@echo "... rebuild_cache"
-	@echo "... edit_cache"
-	@echo "... yamaha_listener"
-	@echo "... test"
 	@echo "... install/strip"
 	@echo "... install/local"
-	@echo "... script/yamaha_listener.o"
-	@echo "... script/yamaha_listener.i"
-	@echo "... script/yamaha_listener.s"
+	@echo "... test"
+	@echo "... edit_cache"
 .PHONY : help
 
 

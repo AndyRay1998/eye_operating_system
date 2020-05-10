@@ -5,15 +5,9 @@ import numpy as np
 from std_msgs.msg import Float32MultiArray
 from std_msgs.msg import MultiArrayDimension
 from omni_msgs.msg import OmniFeedback
-import sys
-import subprocess
 
-# add API located in another folder
-sys.path.append(subprocess.getoutput("rospack find hyperion_mixed") + '/src')
 
-import Hyperion_PY_API.hyperion
-import Hyperion_PY_API.networkconfiguration
-import Hyperion_PY_API.getspectrumandpeaksplot
+from hyperion_command import Hcommand
 
 
 def hyperion_force(address, ref_wavelen):
@@ -23,13 +17,13 @@ def hyperion_force(address, ref_wavelen):
     '''
     try:
         # network configuration of hyperion device (we may not need this)
-        # networkconfiguration.hyperion_connect_config(current_address)
+        # h.connect_config(current_address)
 
         # TODO: real test
         # retrieve hyperion data
         # get peaks and wavelengths from hyperion in 1*3 array
         '''
-        wave_diff = getspectrumandpeaksplot.getpeaks(address, ref_wavelen)
+        wave_diff = h.getpeaks(address, ref_wavelen)
         # Calculation referenced from essay
         lbd_m = np.sum(wave_diff) / 3
         lbd_1 = wave_diff[0] - lbd_m
@@ -55,7 +49,7 @@ def hyperion_force(address, ref_wavelen):
 def wavelength_calibrate(address):
     ref_wavelen = 0
     for i in range(20):
-        test = getspectrumandpeaksplot.getpeaks(address)
+        test = h.getpeaks()
         ref_wavelen += np.sum(test)
     return(ref_wavelen / 20 + 1550)
 
@@ -85,9 +79,12 @@ if __name__ == '__main__':
     rospy.init_node('Hyperion_talker', anonymous=False)
     rate = rospy.Rate(11) # 11hz
 
+    # TODO: cofirm hyperion address and revise eye_op_robot.launch
     # retrieve parameter from .launch file
     current_address = rospy.get_param("~Hyperion_address")
 
+    # hyperion connection
+    h = Hcommand(current_address)
     # reference wavelength calibration
     # TODO: uncomment for real test
     # ref_wavelen = wavelength_calibrate(current_address)

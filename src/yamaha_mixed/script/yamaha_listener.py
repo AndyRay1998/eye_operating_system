@@ -20,8 +20,8 @@ def callback(data):
     ## incre = getVal() -> array-like
     # movei(incre)
 
-def yamaha_listener():
 
+def yamaha_listener():
     # init ROS node
     rospy.init_node("Yamaha_listener", anonymous=False)
     rospy.Subscriber("joint_states", OmniState, callback)
@@ -38,7 +38,12 @@ def yamaha_listener():
 
     rospy.spin()
 
+    return yamaha
+
 
 if __name__ == '__main__':
 
-    yamaha_listener()
+    yamaha = yamaha_listener()
+
+    # close serial object
+    yamaha.ser_close()

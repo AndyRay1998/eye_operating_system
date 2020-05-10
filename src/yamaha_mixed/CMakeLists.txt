@@ -205,5 +205,3 @@ include_directories(
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
-add_executable(yamaha_listener script/yamaha_listener.cpp)
-target_link_libraries(yamaha_listener ${catkin_LIBRARIES})

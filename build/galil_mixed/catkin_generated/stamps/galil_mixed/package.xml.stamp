@@ -63,8 +63,8 @@
   <build_depend>omni_msgs</build_depend>
   <exec_depend>omni_msgs</exec_depend>
 
-  <build_depend>eye_op_common</build_depend>
-  <exec_depend>eye_op_common</exec_depend>
+  <build_depend>sensor_msgs</build_depend>
+  <exec_depend>sensor_msgs</exec_depend>
 
 
   <!-- The export tag contains other, unspecified, tags -->

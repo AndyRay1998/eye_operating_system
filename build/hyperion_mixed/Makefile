@@ -78,17 +78,6 @@ install/fast: preinstall/fast
 	/usr/bin/cmake -P cmake_install.cmake
 .PHONY : install/fast
 
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
-
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
@@ -133,6 +122,17 @@ test/fast: test
 
 .PHONY : test/fast
 
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
+
 # The main all target
 all: cmake_check_build_system
 	cd /home/andy/eye_op_robot_mixed/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/andy/eye_op_robot_mixed/build/CMakeFiles /home/andy/eye_op_robot_mixed/build/hyperion_mixed/CMakeFiles/progress.marks
@@ -165,48 +165,6 @@ depend:
 	cd /home/andy/eye_op_robot_mixed/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
-# Convenience name for target.
-hyperion_mixed/CMakeFiles/hyperion_talker.dir/rule:
-	cd /home/andy/eye_op_robot_mixed/build && $(MAKE) -f CMakeFiles/Makefile2 hyperion_mixed/CMakeFiles/hyperion_talker.dir/rule
-.PHONY : hyperion_mixed/CMakeFiles/hyperion_talker.dir/rule
-
-# Convenience name for target.
-hyperion_talker: hyperion_mixed/CMakeFiles/hyperion_talker.dir/rule
-
-.PHONY : hyperion_talker
-
-# fast build rule for target.
-hyperion_talker/fast:
-	cd /home/andy/eye_op_robot_mixed/build && $(MAKE) -f hyperion_mixed/CMakeFiles/hyperion_talker.dir/build.make hyperion_mixed/CMakeFiles/hyperion_talker.dir/build
-.PHONY : hyperion_talker/fast
-
-script/hyperion_talker.o: script/hyperion_talker.cpp.o
-
-.PHONY : script/hyperion_talker.o
-
-# target to build an object file
-script/hyperion_talker.cpp.o:
-	cd /home/andy/eye_op_robot_mixed/build && $(MAKE) -f hyperion_mixed/CMakeFiles/hyperion_talker.dir/build.make hyperion_mixed/CMakeFiles/hyperion_talker.dir/script/hyperion_talker.cpp.o
-.PHONY : script/hyperion_talker.cpp.o
-
-script/hyperion_talker.i: script/hyperion_talker.cpp.i
-
-.PHONY : script/hyperion_talker.i
-
-# target to preprocess a source file
-script/hyperion_talker.cpp.i:
-	cd /home/andy/eye_op_robot_mixed/build && $(MAKE) -f hyperion_mixed/CMakeFiles/hyperion_talker.dir/build.make hyperion_mixed/CMakeFiles/hyperion_talker.dir/script/hyperion_talker.cpp.i
-.PHONY : script/hyperion_talker.cpp.i
-
-script/hyperion_talker.s: script/hyperion_talker.cpp.s
-
-.PHONY : script/hyperion_talker.s
-
-# target to generate assembly for a file
-script/hyperion_talker.cpp.s:
-	cd /home/andy/eye_op_robot_mixed/build && $(MAKE) -f hyperion_mixed/CMakeFiles/hyperion_talker.dir/build.make hyperion_mixed/CMakeFiles/hyperion_talker.dir/script/hyperion_talker.cpp.s
-.PHONY : script/hyperion_talker.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -215,15 +173,11 @@ help:
 	@echo "... depend"
 	@echo "... list_install_components"
 	@echo "... install"
-	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... hyperion_talker"
 	@echo "... install/strip"
 	@echo "... install/local"
 	@echo "... test"
-	@echo "... script/hyperion_talker.o"
-	@echo "... script/hyperion_talker.i"
-	@echo "... script/hyperion_talker.s"
+	@echo "... edit_cache"
 .PHONY : help
 
 

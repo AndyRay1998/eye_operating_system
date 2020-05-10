@@ -89,16 +89,16 @@ rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
 
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
 
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
+# Special rule for the target install/strip
+install/strip/fast: install/strip
 
-.PHONY : edit_cache/fast
+.PHONY : install/strip/fast
 
 # Special rule for the target install/local
 install/local: preinstall
@@ -111,17 +111,6 @@ install/local/fast: install/local
 
 .PHONY : install/local/fast
 
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
-
-# Special rule for the target install/strip
-install/strip/fast: install/strip
-
-.PHONY : install/strip/fast
-
 # Special rule for the target test
 test:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
@@ -132,6 +121,17 @@ test:
 test/fast: test
 
 .PHONY : test/fast
+
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -165,48 +165,6 @@ depend:
 	cd /home/andy/eye_op_robot_mixed/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
-# Convenience name for target.
-eye_op_common/CMakeFiles/test_listener.dir/rule:
-	cd /home/andy/eye_op_robot_mixed/build && $(MAKE) -f CMakeFiles/Makefile2 eye_op_common/CMakeFiles/test_listener.dir/rule
-.PHONY : eye_op_common/CMakeFiles/test_listener.dir/rule
-
-# Convenience name for target.
-test_listener: eye_op_common/CMakeFiles/test_listener.dir/rule
-
-.PHONY : test_listener
-
-# fast build rule for target.
-test_listener/fast:
-	cd /home/andy/eye_op_robot_mixed/build && $(MAKE) -f eye_op_common/CMakeFiles/test_listener.dir/build.make eye_op_common/CMakeFiles/test_listener.dir/build
-.PHONY : test_listener/fast
-
-script/test_listener.o: script/test_listener.cpp.o
-
-.PHONY : script/test_listener.o
-
-# target to build an object file
-script/test_listener.cpp.o:
-	cd /home/andy/eye_op_robot_mixed/build && $(MAKE) -f eye_op_common/CMakeFiles/test_listener.dir/build.make eye_op_common/CMakeFiles/test_listener.dir/script/test_listener.cpp.o
-.PHONY : script/test_listener.cpp.o
-
-script/test_listener.i: script/test_listener.cpp.i
-
-.PHONY : script/test_listener.i
-
-# target to preprocess a source file
-script/test_listener.cpp.i:
-	cd /home/andy/eye_op_robot_mixed/build && $(MAKE) -f eye_op_common/CMakeFiles/test_listener.dir/build.make eye_op_common/CMakeFiles/test_listener.dir/script/test_listener.cpp.i
-.PHONY : script/test_listener.cpp.i
-
-script/test_listener.s: script/test_listener.cpp.s
-
-.PHONY : script/test_listener.s
-
-# target to generate assembly for a file
-script/test_listener.cpp.s:
-	cd /home/andy/eye_op_robot_mixed/build && $(MAKE) -f eye_op_common/CMakeFiles/test_listener.dir/build.make eye_op_common/CMakeFiles/test_listener.dir/script/test_listener.cpp.s
-.PHONY : script/test_listener.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -216,14 +174,10 @@ help:
 	@echo "... list_install_components"
 	@echo "... install"
 	@echo "... rebuild_cache"
-	@echo "... edit_cache"
-	@echo "... test_listener"
-	@echo "... install/local"
 	@echo "... install/strip"
+	@echo "... install/local"
 	@echo "... test"
-	@echo "... script/test_listener.o"
-	@echo "... script/test_listener.i"
-	@echo "... script/test_listener.s"
+	@echo "... edit_cache"
 .PHONY : help
 
 

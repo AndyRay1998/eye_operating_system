@@ -206,5 +206,3 @@ include_directories(
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
-add_executable(hyperion_talker script/hyperion_talker.cpp)
-target_link_libraries(hyperion_talker ${catkin_LIBRARIES})

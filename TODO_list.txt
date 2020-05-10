@@ -9,8 +9,7 @@ See readme.md first to get an overall glance of this project.
 undone and unsure:
   1. software limits
   2. ROS node frequency
-  3. auto installation bash: env.sh
-  4. motor joint values in start-up
+  3. motor joint values in start-up
 
 
 ALL:
@@ -18,26 +17,31 @@ ALL:
 
 
 src/UI.py:
-  1. It is user interface developed under PyQt5, and is still just a basic framework.
-  2. determine servo number of each motor in Robot and revise axis number in tab2UI
-  3. There are a great number of tests remained. Read through the code and complete them one by one.
+  1. determine servo number of each motor in Robot and revise axis number in tab2UI
+  2. There are a great number of tests remained. Read through the code and complete them one by one.
+  3. At present, when you start all nodes, the velocity data is sent to both yamaha and galil. Basically, in real practice,
+    you want to control yamaha first and then galil respectively, but I cannot find a way to complete this transform through, say,
+    pressing a button.
 
 
 eye_op_common package:
   1. Confirm yamaha default port;
-  2. Omni test.
+  2. Omni test;
+  3. Confirm default ip_address.
 
 
 galil_mixed package:
   galil_overall_listener.py:
-    1. test galil connection and command execution.
+    1. test galil connection and command execution;
+    2. Cofirm offset and ratio of roll.
   galil_command.py:
     1. confirm axis number of last three joints in 'TP' command; default: A, B, C
     # 2. convert return value of 'TP' command to degree;
     3. determine acceleration value; convert cts unit to rad unit
     4. determine speed ratio;
     5. determine speed in cts unit;
-    6. determine hardware I/O number of grip and revise grip().
+    6. determine hardware I/O number of grip and revise grip();
+    7. determine roll motor axis in iap_a().
 
 
 omni_packages folder:

@@ -803,45 +803,6 @@ sensor_msgs_generate_messages_eus/fast:
 .PHONY : sensor_msgs_generate_messages_eus/fast
 
 #=============================================================================
-# Target rules for targets named test_listener
-
-# Build rule for target.
-test_listener: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 test_listener
-.PHONY : test_listener
-
-# fast build rule for target.
-test_listener/fast:
-	$(MAKE) -f eye_op_common/CMakeFiles/test_listener.dir/build.make eye_op_common/CMakeFiles/test_listener.dir/build
-.PHONY : test_listener/fast
-
-#=============================================================================
-# Target rules for targets named galil_overall_listener
-
-# Build rule for target.
-galil_overall_listener: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 galil_overall_listener
-.PHONY : galil_overall_listener
-
-# fast build rule for target.
-galil_overall_listener/fast:
-	$(MAKE) -f galil_mixed/CMakeFiles/galil_overall_listener.dir/build.make galil_mixed/CMakeFiles/galil_overall_listener.dir/build
-.PHONY : galil_overall_listener/fast
-
-#=============================================================================
-# Target rules for targets named hyperion_talker
-
-# Build rule for target.
-hyperion_talker: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 hyperion_talker
-.PHONY : hyperion_talker
-
-# fast build rule for target.
-hyperion_talker/fast:
-	$(MAKE) -f hyperion_mixed/CMakeFiles/hyperion_talker.dir/build.make hyperion_mixed/CMakeFiles/hyperion_talker.dir/build
-.PHONY : hyperion_talker/fast
-
-#=============================================================================
 # Target rules for targets named actionlib_generate_messages_py
 
 # Build rule for target.
@@ -1127,19 +1088,6 @@ omni/fast:
 	$(MAKE) -f omni_packages/omni_common/CMakeFiles/omni.dir/build.make omni_packages/omni_common/CMakeFiles/omni.dir/build
 .PHONY : omni/fast
 
-#=============================================================================
-# Target rules for targets named yamaha_listener
-
-# Build rule for target.
-yamaha_listener: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 yamaha_listener
-.PHONY : yamaha_listener
-
-# fast build rule for target.
-yamaha_listener/fast:
-	$(MAKE) -f yamaha_mixed/CMakeFiles/yamaha_listener.dir/build.make yamaha_mixed/CMakeFiles/yamaha_listener.dir/build
-.PHONY : yamaha_listener/fast
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -1202,9 +1150,6 @@ help:
 	@echo "... geometry_msgs_generate_messages_py"
 	@echo "... sensor_msgs_generate_messages_cpp"
 	@echo "... sensor_msgs_generate_messages_eus"
-	@echo "... test_listener"
-	@echo "... galil_overall_listener"
-	@echo "... hyperion_talker"
 	@echo "... actionlib_generate_messages_py"
 	@echo "... tf_generate_messages_py"
 	@echo "... actionlib_msgs_generate_messages_lisp"
@@ -1227,7 +1172,6 @@ help:
 	@echo "... tf2_msgs_generate_messages_py"
 	@echo "... actionlib_generate_messages_nodejs"
 	@echo "... omni"
-	@echo "... yamaha_listener"
 .PHONY : help
 
 

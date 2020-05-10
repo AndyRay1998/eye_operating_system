@@ -3,6 +3,7 @@
 import numpy as np
 from . import hyperion
 
+
 def getpeaks(current_address='10.0.10.71', ref_wavelen = 1550) -> np.array:
 
     h = hyperion.Hyperion(current_address)

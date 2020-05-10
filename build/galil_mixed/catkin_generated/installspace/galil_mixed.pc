@@ -5,4 +5,4 @@ Description: Description of galil_mixed
 Version: 0.0.0
 Cflags: 
 Libs: -L/home/andy/eye_op_robot_mixed/install/lib 
-Requires: roscpp rospy std_msgs eye_op_common
+Requires: roscpp rospy std_msgs

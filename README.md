@@ -52,9 +52,9 @@ $ roslaunch omni_common omni.launch
 7. After that, you still need to see http://fsuarez6.github.io/projects/geomagic-touch-in-ros/ for more information  
 
 ## Scripting Languages  
-This workspace include both .cpp and .py executable files for flexibility and robustness.  
-Because of time limit, I will first complete python scripts although it may be slower sometimes.  
-NOTE that at present galil ,hyperion and YAMAHA (serial port) provide c++ support.  
+This workspace include only .py executable files.  
+Because of time limit, I could only complete python scripts although it may be slower sometimes.  
+NOTE that at present galil ,hyperion and YAMAHA (serial port) provide c++ API.  
 
 ## Usage of roslaunch - Entrance of Project
 There are five parameters designed :  
@@ -63,13 +63,9 @@ There are five parameters designed :
 * `file_suffix` for programming language selection.  
 All of them have a default value.  
 e.g.  
-Evoke .cpp executable files:  
-```Bash  
-$ roslaunch galil_mixed eye_op_robot.launch  
-```  
 Evoke .py executable files:  
 ```Bash  
-$ roslaunch galil_mixed eye_op_robot.launch file_suffix:=.py  
+$ roslaunch galil_mixed eye_op_robot.launch  
 ```  
 Check "eye_op_common/launch/eye_op_robot.launch" for source code.  
 
@@ -88,7 +84,8 @@ There are five folders inside `src`.
 `hyperion_mixed` is for Hyperion device. API locates in `src` and executable scripts are in `script`.  
 `galil_mixed` is for Galil motion control card. API locates in `src` and executable scripts are in `script`.  
 `yamaha_mixed` is for Galil motion control card. API locates in `src` and executable scripts are in `script`.  
-`omni_packages` is not a ROS package itself, but those four folders inside it are. `omni_packages` is just for better file structure. And those four packages inside are Omni API that you should have installed following previous instruction.  
+`omni_packages` is not a ROS package itself, but those four folders inside it are. `omni_packages` is just for better file structure. And those four packages inside are Omni API that you should have installed following previous instruction.
+Note that `omni_joint_description.png`, `PHANToM OMNI Haptic.pdf` may help you undertand the structure of OMNI.  
 `eye_op_robotics` is mainly for jacobian matrix verification. Read `joint_state_pub.py` carefully for instruction.   `display.launch` will evoke rviz and GUI for interaction. `simulation.launch` enables observation of speed control performance.  
 `UI.py` plots user interface based on `PyQt5`. It includes five class, which locate in the same path. Use `./UI.py` to invoke UI. In tab1, you can start all ROS nodes to begin real control. In tab2, you can implement servo ON/OFF and jog motion.   
 `TODO_list.txt` indicates all to-do business before this project is complete.  

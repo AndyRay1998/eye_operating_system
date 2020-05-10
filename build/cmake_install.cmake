@@ -133,7 +133,6 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("/home/andy/eye_op_robot_mixed/build/hyperion_mixed/cmake_install.cmake")
   include("/home/andy/eye_op_robot_mixed/build/omni_packages/omni_common/cmake_install.cmake")
   include("/home/andy/eye_op_robot_mixed/build/omni_packages/omni_description/cmake_install.cmake")
-  include("/home/andy/eye_op_robot_mixed/build/eye_op_robotics/cmake_install.cmake")
   include("/home/andy/eye_op_robot_mixed/build/eye_robotics_2/cmake_install.cmake")
   include("/home/andy/eye_op_robot_mixed/build/yamaha_mixed/cmake_install.cmake")
 

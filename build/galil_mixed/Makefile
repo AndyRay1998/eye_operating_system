@@ -89,17 +89,6 @@ rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
 
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
-
 # Special rule for the target install/strip
 install/strip: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
@@ -133,6 +122,17 @@ test/fast: test
 
 .PHONY : test/fast
 
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
+
 # The main all target
 all: cmake_check_build_system
 	cd /home/andy/eye_op_robot_mixed/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/andy/eye_op_robot_mixed/build/CMakeFiles /home/andy/eye_op_robot_mixed/build/galil_mixed/CMakeFiles/progress.marks
@@ -165,48 +165,6 @@ depend:
 	cd /home/andy/eye_op_robot_mixed/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
-# Convenience name for target.
-galil_mixed/CMakeFiles/galil_overall_listener.dir/rule:
-	cd /home/andy/eye_op_robot_mixed/build && $(MAKE) -f CMakeFiles/Makefile2 galil_mixed/CMakeFiles/galil_overall_listener.dir/rule
-.PHONY : galil_mixed/CMakeFiles/galil_overall_listener.dir/rule
-
-# Convenience name for target.
-galil_overall_listener: galil_mixed/CMakeFiles/galil_overall_listener.dir/rule
-
-.PHONY : galil_overall_listener
-
-# fast build rule for target.
-galil_overall_listener/fast:
-	cd /home/andy/eye_op_robot_mixed/build && $(MAKE) -f galil_mixed/CMakeFiles/galil_overall_listener.dir/build.make galil_mixed/CMakeFiles/galil_overall_listener.dir/build
-.PHONY : galil_overall_listener/fast
-
-script/galil_overall_listener.o: script/galil_overall_listener.cpp.o
-
-.PHONY : script/galil_overall_listener.o
-
-# target to build an object file
-script/galil_overall_listener.cpp.o:
-	cd /home/andy/eye_op_robot_mixed/build && $(MAKE) -f galil_mixed/CMakeFiles/galil_overall_listener.dir/build.make galil_mixed/CMakeFiles/galil_overall_listener.dir/script/galil_overall_listener.cpp.o
-.PHONY : script/galil_overall_listener.cpp.o
-
-script/galil_overall_listener.i: script/galil_overall_listener.cpp.i
-
-.PHONY : script/galil_overall_listener.i
-
-# target to preprocess a source file
-script/galil_overall_listener.cpp.i:
-	cd /home/andy/eye_op_robot_mixed/build && $(MAKE) -f galil_mixed/CMakeFiles/galil_overall_listener.dir/build.make galil_mixed/CMakeFiles/galil_overall_listener.dir/script/galil_overall_listener.cpp.i
-.PHONY : script/galil_overall_listener.cpp.i
-
-script/galil_overall_listener.s: script/galil_overall_listener.cpp.s
-
-.PHONY : script/galil_overall_listener.s
-
-# target to generate assembly for a file
-script/galil_overall_listener.cpp.s:
-	cd /home/andy/eye_op_robot_mixed/build && $(MAKE) -f galil_mixed/CMakeFiles/galil_overall_listener.dir/build.make galil_mixed/CMakeFiles/galil_overall_listener.dir/script/galil_overall_listener.cpp.s
-.PHONY : script/galil_overall_listener.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -216,14 +174,10 @@ help:
 	@echo "... list_install_components"
 	@echo "... install"
 	@echo "... rebuild_cache"
-	@echo "... edit_cache"
-	@echo "... galil_overall_listener"
 	@echo "... install/strip"
 	@echo "... install/local"
 	@echo "... test"
-	@echo "... script/galil_overall_listener.o"
-	@echo "... script/galil_overall_listener.i"
-	@echo "... script/galil_overall_listener.s"
+	@echo "... edit_cache"
 .PHONY : help
 
 
