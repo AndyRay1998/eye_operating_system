@@ -34,9 +34,9 @@ class g_control():
             sys.exit()
 
 
-    def g_jog(self, v1, v2, v3):
+    def g_jog(self, v1=0, v2=0, v3=0):
         '''
-        function: complete JOG mode motion in cartesian space; used for velocity control
+        function: complete JOG mode motion in cartesian space
         params: v -> velocities of theta3, theta2, d6
                 g_flag -> flag that avoid repetitive definition of AC, DC
         unit: mm/s
@@ -49,16 +49,7 @@ class g_control():
         p3 = float(self.g.GCommand('TP C')) # d6
         # P.convert_to_degrees()
         '''
-
-        # TODO: may need a speed ratio; determine that through experiment
-        ratio_x = 1.0
-        ratio_y = 1.0
-        ratio_z = 1.0
-        v1 = v1 * ratio_x
-        v2 = v2 * ratio_y
-        v3 = v3 * ratio_z
         # TODO： convert velocity to cts unit
-
         # TODO: confirm all values in the following command
         # TODO: confirm axis number; default A, B, C
         # motion command sent to galil card
@@ -106,27 +97,31 @@ class g_control():
         self.g.GCommand('_MO' + axis)
 
 
-    def iap(self, axis, distance=5):
+    def iap(self, axis, distance=5, ratio=1):
         '''
         Independent axis positioning.
         @params:
             axis -> A, B, C;
             distance unit: mm or degree
             distance: relative distance in cts
+            ratio unit: 1
         '''
+        distance = distance * ratio
         # TODO: convert distance to cts unit
         # distance = convert_to_cts()
         self.g.GCommand('PR' + axis + "=" + str(distance))
 
 
-    def iap_a(self, axis='D', position=5):
+    def iap_a(self, axis='D', position=5, ratio=1):
         '''
         Independent axis positioning.
         @params:
             axis -> A, B, C;
             distance unit: mm or degree
             position: absolute position in cts
+            ratio unit: 1
         '''
+        position = position * ratio
         # TODO: convert distance to cts unit
         # distance = convert_to_cts()
         self.g.GCommand('PA' + axis + "=" + str(position))
@@ -146,3 +141,17 @@ class g_control():
         # clear bit to low
         if state == 0:
             self.g.GCommand('CB' + str(axis))
+
+
+    def tp(self, axis=''):
+        '''
+        return position of all axis in cts unit
+        @param:
+            axis: '' -> return position of all available axis;
+                  random combination of A to H. E.g. ABC
+        '''
+        return(self.g.GCommand(f'TP {axis}'))
+
+
+    def out(self, axis):
+        return(self.g.GCommand(f'@OUT[{axis}]'))

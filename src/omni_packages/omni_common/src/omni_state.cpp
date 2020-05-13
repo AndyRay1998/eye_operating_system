@@ -79,7 +79,7 @@ public:
     std::ostringstream stream2;
     stream2 << omni_name << "/state";
     std::string state_topic_name = std::string(stream2.str());
-    state_publisher = n.advertise<omni_msgs::OmniState>(state_topic_name.c_str(), 1);
+    state_publisher = n.advertise<omni_msgs::OmniState>(state_topic_name.c_str(), 100);
 
     //Subscribe to NAME/force_feedback
     std::ostringstream stream3;

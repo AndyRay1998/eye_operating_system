@@ -5,7 +5,7 @@ import numpy as np
 
 
 
-def inv_kine_36(Px, Py, Pz, L=406, l1=70, L_=66.000004):
+def inv_kine_63(Px, Py, Pz, L=406, l1=70, L_=66.000004):
     '''
     Given position of RCM point in coordinate system3 and control joint4, 5, 6
     '''
@@ -68,7 +68,7 @@ inv_result = np.array([[538.424515, 420.096537, 353.053352, 3.629233,   407.9413
 '''
 
 
-def inv_kine_03(Px, Py, Pz, a1=200., a2=86.5, d1=242.8, d2=30.3, L=406.0):
+def inv_kine_30(Px, Py, Pz, a1=200., a2=86.5, d1=242.8, d2=30.3, L=406.0):
     '''
     Given position in coordinate system0 and control joint4, 5, 6
     '''

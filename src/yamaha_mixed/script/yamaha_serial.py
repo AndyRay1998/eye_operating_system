@@ -123,3 +123,13 @@ class command():
         close serial transmission
         '''
         self.ser.close()
+
+
+    def ser_read(self):
+        '''
+        read a line from serial port
+        end with /n
+        '''
+        # TODO: test if it works
+        # may do encode or pre-process before returning
+        return(self.ser.readline())

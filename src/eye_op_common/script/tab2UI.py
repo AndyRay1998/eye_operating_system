@@ -36,17 +36,6 @@ class tab2UI(QTabWidget):
         # TODO: confirm ip of GALIL
         self.galil_ip = "TODO"
 
-        # device connect and disconnect
-        self.gButton = QPushButton("connect galil") # galil connect
-        self.hButton = QPushButton("connect hyperion") # hyperion connect
-        self.oButton = QPushButton("connect omni") # omni connect
-        self.yButton = QPushButton("connect yamaha") # yamaha connect
-        # click event
-        self.gButton.clicked.connect(lambda:self.connect_click("g"))
-        self.hButton.clicked.connect(lambda:self.connect_click("h"))
-        self.oButton.clicked.connect(lambda:self.connect_click("o"))
-        self.yButton.clicked.connect(lambda:self.connect_click("y"))
-
         self.hbox = QHBoxLayout()
         self.vbox = QVBoxLayout()
 
@@ -243,26 +232,49 @@ class tab2UI(QTabWidget):
         else:
             axis = int(flag[-9])
             param = eval(f'self.d{axis}Edit')
-            try:
-                dis = flag[-1] + param.text()
-            except:
-                # default distance is 5
-                dis = flag[-1] + '5'
-                param.setText('5')
-            dis = int(dis)
-            # TODO: convert all control value(dis) to cts unit
-            # dis.convert_to_cts()
-
-            # TODO: uncomment and test
-            '''
-            # YAMAHA PTP motion
-            if axis==1 or axis==2 or axis==3:
-                dis_list = [0, 0, 0, 0, 0, 0]
-                dis_list[axis-1] = dis
-                print(dis_list)
-
-                self.yamaha.movei(dis_list)
-            # galil PTP motion
+            # if input is empty, implement jog control
+            if param.text() == "":
+                # TODO: uncomment and test
+                # TODO: keep pressing and robot will keep moving
+                '''
+                # YAMAHA jog motion
+                if axis==1 or axis==2 or axis==3:
+                    self.yamaha.jog(axis, flag[-1])
+                # galil jog motion
+                else:
+                    # 5 here is randomly set for jog speed
+                    if axis==4:
+                        self.galil.g_jog(v1=5)
+                    if axis==5:
+                        self.galil.g_jog(v2=5)
+                    if axis==6:
+                        self.galil.g_jog(v3=5)
+                '''
+                pass
+            # if input is not empty, implement PTP control
             else:
-                self.galil.iap(dic[axis-3], dis)
-            '''
+                try:
+                    dis = flag[-1] + param.text()
+                    dis = int(dis)
+                except:
+                    # default distance is 5
+                    dis = flag[-1] + '5'
+                    param.setText('5')
+                    dis = int(dis)
+
+                # TODO: convert all control value(dis) to cts unit
+                # dis.convert_to_cts()
+
+                # TODO: uncomment and test
+                '''
+                # YAMAHA PTP motion
+                if axis==1 or axis==2 or axis==3:
+                    dis_list = [0, 0, 0, 0, 0, 0]
+                    dis_list[axis-1] = dis
+                    print(dis_list)
+
+                    self.yamaha.movei(dis_list)
+                # galil PTP motion
+                else:
+                    self.galil.iap(dic[axis-3], dis)
+                '''

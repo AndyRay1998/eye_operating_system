@@ -6,6 +6,7 @@ from galil_command import g_control
 # use omni customed message type
 from omni_msgs.msg import OmniState
 from sensor_msgs.msg import JointState
+from std_msgs.msg import Float32MultiArray
 
 
 def callback1(data):
@@ -57,11 +58,10 @@ if __name__ == '__main__':
 
     # galil card connection
     g = g_control(galil_address)
+    grip_count = 0
     # TODO: uncomment for real test
     # g.connect()
 
-    # data listening and galil command
-    # It is a blocking process
     galil_listener()
 
     # Close galil connection

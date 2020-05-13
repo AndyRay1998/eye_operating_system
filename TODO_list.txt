@@ -10,6 +10,11 @@ undone and unsure:
   1. software limits
   2. ROS node frequency
   3. motor joint values in start-up
+  4. retrieve real-time position feedback during operation, e.g. action / service
+  5. use the slider in tab1 to adjust speed ratio
+  6. motor7 needs increment control since omni may not operate if the button is released
+  7. YAMAHA transmits through serial port, so that it needs a thread to retrieve return value
+    and determine date type and purpose. It is a tough job.
 
 
 ALL:
@@ -20,8 +25,7 @@ src/UI.py:
   1. determine servo number of each motor in Robot and revise axis number in tab2UI
   2. There are a great number of tests remained. Read through the code and complete them one by one.
   3. At present, when you start all nodes, the velocity data is sent to both yamaha and galil. Basically, in real practice,
-    you want to control yamaha first and then galil respectively, but I cannot find a way to complete this transform through, say,
-    pressing a button.
+    you want to control yamaha first and then galil respectively.
 
 
 eye_op_common package:
@@ -37,11 +41,10 @@ galil_mixed package:
   galil_command.py:
     1. confirm axis number of last three joints in 'TP' command; default: A, B, C
     # 2. convert return value of 'TP' command to degree;
-    3. determine acceleration value; convert cts unit to rad unit
-    4. determine speed ratio;
-    5. determine speed in cts unit;
-    6. determine hardware I/O number of grip and revise grip();
-    7. determine roll motor axis in iap_a().
+    3. determine acceleration value; convert cts unit to rad unit;
+    4. determine speed in cts unit;
+    5. determine hardware I/O number of grip and revise grip();
+    6. determine roll motor axis in iap_a().
 
 
 omni_packages folder:
@@ -61,3 +64,4 @@ yamaha package:
     decide an ideal working frequency - SCARA can complete the increment within one loop;
     - Ideally, we can use 'WHERE' command to retrieve values of all joints from SCARA for jacobian calculation.
     - However, it takes too long to read serial so we assume SCARA completes all our increment command perfectly.
+    test serial readline function and add data process code.

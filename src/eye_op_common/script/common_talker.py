@@ -27,7 +27,7 @@ if __name__ == '__main__':
     pub = rospy.Publisher('phantom/state', OmniState, queue_size=10)
     pub1 = rospy.Publisher('phantom/joint_state', JointState, queue_size=10)
     rospy.init_node('common_talker', anonymous=False)
-    rate = rospy.Rate(2) # 2hz
+    rate = rospy.Rate(100) # 2hz
 
     try:
         talker(pub, pub1)

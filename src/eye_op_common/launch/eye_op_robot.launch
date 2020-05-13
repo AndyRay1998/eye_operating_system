@@ -18,9 +18,17 @@
   <node name="Galil_overall_listener" pkg="galil_mixed" type="galil_overall_listener$(arg file_suffix)" output="screen" >
     <param name="Galil_address" type="string" value="$(arg galil_address)" />
   </node>
+  <node name="Galil_overall_talker" pkg="galil_mixed" type="galil_overall_talker$(arg file_suffix)" output="screen" >
+    <param name="Galil_address" type="string" value="$(arg galil_address)" />
+  </node>
 
   <!-- Yamaha node-->
   <node name="Yamaha_listener" pkg="yamaha_mixed" type="yamaha_listener$(arg file_suffix)" output="screen" >
+    <param name="Yamaha_address" type="string" value="$(arg yamaha_address)" />
+    <param name="Yamaha_freq" type="int" value="$(arg yamaha_freq)" />
+    <param name="Yamaha_timeout" type="double" value="$(arg yamaha_timeout)" />
+  </node>
+  <node name="Yamaha_talker" pkg="yamaha_mixed" type="yamaha_talker$(arg file_suffix)" output="screen" >
     <param name="Yamaha_address" type="string" value="$(arg yamaha_address)" />
     <param name="Yamaha_freq" type="int" value="$(arg yamaha_freq)" />
     <param name="Yamaha_timeout" type="double" value="$(arg yamaha_timeout)" />

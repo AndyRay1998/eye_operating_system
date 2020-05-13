@@ -10,10 +10,12 @@ chmod +x ./src/eye_op_common/script/UI.py
 chmod +x ./src/eye_robotics_2/script/joint_state_pub.py
 
 chmod +x ./src/galil_mixed/script/galil_overall_listener.py
+chmod +x ./src/galil_mixed/script/galil_overall_talker.py
 
 chmod +x ./src/hyperion_mixed/script/hyperion_talker.py
 
 chmod +x ./src/yamaha_mixed/script/yamaha_listener.py
+chmod +x ./src/yamaha_mixed/script/yamaha_talker.py
 
 echo "installing OMNI API"
 
