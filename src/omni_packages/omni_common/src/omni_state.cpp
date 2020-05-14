@@ -97,7 +97,7 @@ public:
     std::ostringstream stream5;
     stream5 << omni_name << "/joint_states";
     std::string joint_topic_name = std::string(stream5.str());
-    joint_publisher = n.advertise<sensor_msgs::JointState>(joint_topic_name.c_str(), 1);
+    joint_publisher = n.advertise<sensor_msgs::JointState>(joint_topic_name.c_str(), 100);
 
     // see line 65
     state = s;

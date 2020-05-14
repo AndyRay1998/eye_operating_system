@@ -37,16 +37,33 @@ def callback2(data):
 
     # rotation about its z axis
     roll = data.position[5]
-    # TODO: cofirm offset and ratio
-    # roll = (roll + offset) * ratio_roll
-    # TODO: uncomment and test
-    # g.iap_a(position=roll)
+    if g.roll_his != 99999:
+        # increment control with 100hz
+        incre = (roll - g.roll_his) / 100
+        # TODO: cofirm offset and ratio
+        # roll = (roll + offset) * ratio_roll
+        # TODO: uncomment and test
+        # g.iap(distance=roll)
+    # record roll history
+    g.roll_his = roll
+    # publish incre and grip control value
+    galil_talker([incre, g.grip_state])
 
 
 def galil_listener():
     rospy.Subscriber("phantom/state", OmniState, callback1)
     rospy.Subscriber("phantom/joint_state", JointState, callback2)
     rospy.spin()
+
+
+def galil_talker(data):
+    '''
+    return speed of roll joint
+    '''
+    pub_galil = rospy.Publisher('galil/speed', Float32MultiArray, queue_size=10)
+
+    position = Float32MultiArray(data=data)
+    pub_galil.publish(position)
 
 
 if __name__ == '__main__':

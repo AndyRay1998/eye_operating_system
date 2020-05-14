@@ -17,6 +17,7 @@ class g_control():
         self.g = gclib.py()
         # for grip close/open
         self.grip_state = False
+        self.roll_his = 99999
 
 
     def connect(self):

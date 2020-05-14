@@ -9,6 +9,7 @@ import subprocess
 import rospy
 from std_msgs.msg import Float32MultiArray
 from omni_msgs.msg import OmniFeedback
+from omni_msgs.msg import OmniState
 
 import libtmux # reference: https://github.com/tmux-python/libtmux/
 
@@ -24,7 +25,6 @@ class tab1UI(QTabWidget):
     def __init__(self):
         # init of parent class
         super().__init__()
-
         # tmux related
         # init a tmux instance
         self.tmux_server = libtmux.Server()
@@ -34,12 +34,22 @@ class tab1UI(QTabWidget):
         except:
             os.system('tmux kill-session -t main_sess')
             self.main_sess = self.tmux_server.new_session("main_sess")
+        try:
+            self.side_sess = self.tmux_server.new_session("side_sess")
+        except:
+            os.system('tmux kill-session -t side_sess')
+            self.side_sess = self.tmux_server.new_session("side_sess")
         # create a window
         self.main_win_1 = self.main_sess.new_window(attach=False, window_name="main_win_1")
+        self.side_win_1 = self.side_sess.new_window(attach=False, window_name="side_win_1")
         # split two panes
         self.main_pane_1 = self.main_win_1.split_window(attach=False)
+        self.side_pane_1 = self.side_win_1.split_window(attach=False)
         # choose the first pane
         self.main_pane_1 = self.main_win_1.panes[0]
+        self.side_pane_1 = self.side_win_1.panes[0]
+        # start roscore from the very start
+        self.side_pane_1.send_keys('roscore')
 
         # button
         self.sButton = QPushButton("启动")
@@ -75,24 +85,30 @@ class tab1UI(QTabWidget):
         self.pfLabel8 = QLabel('8关节')
         self.pfLabel8.setFixedSize(100, 23)
         self.pf0Label = QLabel('关节位置')
-        self.pf1Label = QLabel('0 度')
-        self.pf2Label = QLabel('0 度')
-        self.pf3Label = QLabel('0 毫米')
-        self.pf4Label = QLabel('0 度')
-        self.pf5Label = QLabel('0 度')
-        self.pf6Label = QLabel('0 毫米')
-        self.pf7Label = QLabel('0 度')
-        self.pf8Label = QLabel('0')
+        self.pf1Label = QLabel('/ 度')
+        self.pf2Label = QLabel('/ 度')
+        self.pf3Label = QLabel('/ 毫米')
+        self.pf4Label = QLabel('/ 度')
+        self.pf5Label = QLabel('/ 度')
+        self.pf6Label = QLabel('/ 毫米')
+        self.pf7Label = QLabel('/ 度')
+        self.pf8Label = QLabel('/')
         # speed feed labels
         self.sf0Label = QLabel('关节速度')
-        self.sf1Label = QLabel('0 度/秒')
-        self.sf2Label = QLabel('0 度/秒')
-        self.sf3Label = QLabel('0 度/秒')
-        self.sf4Label = QLabel('毫米/秒')
-        self.sf5Label = QLabel('0 度/秒')
-        self.sf6Label = QLabel('0 度/秒')
-        self.sf7Label = QLabel('毫米/秒')
+        self.sf1Label = QLabel('/ 度/秒')
+        self.sf2Label = QLabel('/ 度/秒')
+        self.sf3Label = QLabel('/ 度/秒')
+        self.sf4Label = QLabel('/ 毫米/秒')
+        self.sf5Label = QLabel('/ 度/秒')
+        self.sf6Label = QLabel('/ 度/秒')
+        self.sf7Label = QLabel('/ 毫米/秒')
         self.sf8Label = QLabel('/')
+        # force feed labels
+        self.ff0Label = QLabel('末端受力')
+        self.ff1Label = QLabel('/ N')
+        self.ff2Label = QLabel('/ N')
+        self.ff3Label = QLabel('fx')
+        self.ff4Label = QLabel('fy')
 
 
         # grid layout
@@ -175,12 +191,18 @@ class tab1UI(QTabWidget):
         self.grid.addWidget(self.sf6Label, 9, 6)
         self.grid.addWidget(self.sf7Label, 9, 7)
         self.grid.addWidget(self.sf8Label, 9, 8)
+        # force feed
+        self.grid.addWidget(self.ff0Label, 11, 0)
+        self.grid.addWidget(self.ff1Label, 11, 1)
+        self.grid.addWidget(self.ff2Label, 11, 2)
+        self.grid.addWidget(self.ff3Label, 10, 1)
+        self.grid.addWidget(self.ff4Label, 10, 2)
 
         self.grid.addWidget(self.ratioLabel, 6, 0)
         self.grid.addWidget(self.SlideLabel, 6, 5)
         self.grid.addWidget(self.splider, 6, 1, 1, 4)
 
-        self.grid.addLayout(self.vbox, 10, 8)
+        self.grid.addLayout(self.vbox, 112, 8)
         # holistically setup
         self.setLayout(self.grid)
 
@@ -228,21 +250,18 @@ class tab1UI(QTabWidget):
         self.main_pane_1.send_keys('roslaunch eye_op_common eye_op_robot.launch')
         self.main_pane_1 = self.main_win_1.panes[1]
         self.main_pane_1.send_keys('rqt_graph')
-        self.UI_listener()
-
-
 
 
     def start_click(self):
         self.ros_exit = 0
         thread_1 = threading.Thread(target=self.state_monitor_thread)
         thread_2 = threading.Thread(target=self.start_click_thread)
-        # thread_3 = threading.Thread(target=self.UI_listener)
+        thread_3 = threading.Thread(target=self.UI_listener)
         # start thread; do not change starting sequence!!
         thread_2.start()
         thread_1.start()
         time.sleep(3)
-        # thread_3.start()
+        thread_3.start()
 
 
     def end_click(self):
@@ -259,36 +278,66 @@ class tab1UI(QTabWidget):
         self.main_pane_1 = self.main_win_1.split_window(attach=False)
         # choose the first pane
         self.main_pane_1 = self.main_win_1.panes[0]
+
+        self.pf1Label.setText('/ 度')
+        self.pf2Label.setText('/ 度')
+        self.pf3Label.setText('/ 毫米')
+        self.pf4Label.setText('/ 度')
+        self.pf5Label.setText('/ 度')
+        self.pf6Label.setText('/ 毫米')
+        self.pf7Label.setText('/ 度')
+        self.pf8Label.setText('/')
+        # speed feed labels
+        self.sf1Label.setText('/ 度/秒')
+        self.sf2Label.setText('/ 度/秒')
+        self.sf3Label.setText('/ 度/秒')
+        self.sf4Label.setText('/ 毫米/秒')
+        self.sf5Label.setText('/ 度/秒')
+        self.sf6Label.setText('/ 度/秒')
+        self.sf7Label.setText('/ 毫米/秒')
+        self.sf8Label.setText('/')
+        # force feed labels
+        self.ff1Label.setText('/ N')
+        self.ff2Label.setText('/ N')
+
         # afterwards, change button state
         self.sButton.setEnabled(True)
         self.eButton.setEnabled(False)
 
 
     def callback1(self, data):
-        self.pf4Label.setText(str(data.data[0]) + '度')
-        self.pf5Label.setText(str(data.data[1]) + '度')
-        self.pf6Label.setText(str(data.data[2]) + '毫米')
-        self.pf7Label.setText(str(data.data[3]) + '度')
+        self.pf4Label.setText(str('{:.5f}'.format(data.data[0])) + '度')
+        self.pf5Label.setText(str('{:.5f}'.format(data.data[1])) + '度')
+        self.pf6Label.setText(str('{:.5f}'.format(data.data[2])) + '毫米')
+        self.pf7Label.setText(str('{:.5f}'.format(data.data[3])) + '度')
 
     def callback2(self, data):
-        self.pf1Label.setText(str(data.data[0]) + '度')
-        self.pf2Label.setText(str(data.data[1]) + '度')
-        self.pf3Label.setText(str(data.data[2]) + '毫米')
+        self.pf1Label.setText(str('{:.5f}'.format(data.data[0])) + '度')
+        self.pf2Label.setText(str('{:.5f}'.format(data.data[1])) + '度')
+        self.pf3Label.setText(str('{:.5f}'.format(data.data[2])) + '毫米')
 
     def callback3(self, data):
         if self.ros_exit:
             # In UI_listener we have disable_signals=True, so we end ros like this.
-            rospy.signal_shutdown('ROS shutdown')
+            pass
+            #rospy.signal_shutdown('ROS shutdown')
         else:
-            self.sf1Label.setText(str(data.data[0]))
-            self.sf2Label.setText(str(data.data[1]))
-            self.sf3Label.setText(str(data.data[2]))
+            self.sf1Label.setText(str('{:.5f}'.format(data.data[0])) + '度/秒')
+            self.sf2Label.setText(str('{:.5f}'.format(data.data[1])) + '度/秒')
+            self.sf3Label.setText(str('{:.5f}'.format(data.data[2])) + '毫米/秒')
 
     def callback4(self, data):
-        data.force.x
-        self.pf1Label.setText(str(data.data[0]) + '度')
-        self.pf2Label.setText(str(data.data[1]) + '度')
-        self.pf3Label.setText(str(data.data[2]) + '毫米')
+        self.ff1Label.setText(str('{:.5f}'.format(data.force.x)) + ' N')
+        self.ff2Label.setText(str('{:.5f}'.format(data.force.y)) + ' N')
+
+    def callback5(self, data):
+        self.sf4Label.setText(str('{:.5f}'.format(data.velocity.x)) + '度/秒')
+        self.sf5Label.setText(str('{:.5f}'.format(data.velocity.y)) + '度/秒')
+        self.sf6Label.setText(str('{:.5f}'.format(data.velocity.z)) + '毫米/秒')
+
+    def callback6(self, data):
+        self.sf7Label.setText(str('{:.5f}'.format(data.data[0])) + '度/秒')
+        self.pf8Label.setText(str('{:.5f}'.format(data.data[1])))
 
     def UI_listener(self):
         # It is not in main thread, so we have disable_signals=True
@@ -296,7 +345,9 @@ class tab1UI(QTabWidget):
         rospy.Subscriber("galil/position", Float32MultiArray, self.callback1)
         rospy.Subscriber("yamaha/position", Float32MultiArray, self.callback2)
         rospy.Subscriber("yamaha/speed", Float32MultiArray, self.callback3)
-        # TODO: rospy.Subscriber("phantom/force_feedback", OmniFeedback, self.callback4)
+        rospy.Subscriber("phantom/force_feedback", OmniFeedback, self.callback4)
+        rospy.Subscriber("phantom/state", OmniState, self.callback5)
+        rospy.Subscriber("galil/speed", Float32MultiArray, self.callback6)
         rospy.spin()
 
 
@@ -315,8 +366,17 @@ class tab1UI(QTabWidget):
 
             if reply == QMessageBox.Yes:
                 # quit
+                # clear background tmux terminal
+                os.system('tmux kill-session -t main_sess')
+                os.system('tmux kill-session -t side_sess')
+
                 self.exit_flag = 1
-                time.sleep(1)
+
+                # ros shutdown
+                rospy.signal_shutdown('ROS shutdown')
+                # wait for self.exit_flag to be detected
+                time.sleep(0.3)
+                # PyQt5 shutdown
                 QCoreApplication.instance().quit()
             else:
                 pass
